@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 
 public static class Complement
 {
     public static string OfDna(params string[] nucleotides)
     {
+        var result = new List<string>();
         for (var i = 0; i < nucleotides.Length; i++)
         {
-            return Solution1(nucleotides[i]);
+            result.Add(Solution1(nucleotides[i]));
         }
-        throw new ArgumentOutOfRangeException(nameof(nucleotides));
+        return String.Join("", result);
     }
 
     private static string Solution1(string nucleotide)
