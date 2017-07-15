@@ -26,7 +26,7 @@ public class ComplementTest
         Assert.Equal("U", Complement.OfDna("A"));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Rna_complement()
     {
         Assert.Equal("UGCACCAGAAUU", Complement.OfDna("ACGTGGTCTTAA"));

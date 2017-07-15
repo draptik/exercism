@@ -3,22 +3,23 @@ using System.Collections.Generic;
 
 public static class Complement
 {
-    public static string OfDna(params string[] nucleotides)
+    public static string OfDna(string nucleotides)
     {
-        var result = new List<string>();
+        var rnaNucleotids = new List<char>();
         for (var i = 0; i < nucleotides.Length; i++)
         {
-            result.Add(Solution1(nucleotides[i]));
+            rnaNucleotids.Add(MapDnaToRna(nucleotides[i]));
         }
-        return String.Join("", result);
+        var result =  String.Join("", rnaNucleotids);
+        return result;
     }
 
-    private static string Solution1(string nucleotide)
+    private static char MapDnaToRna(char nucleotide)
     {
-        if (nucleotide == "G") return "C";
-        if (nucleotide == "T") return "A";
-        if (nucleotide == "A") return "U";
-        if (nucleotide == "C") return "G";
+        if (nucleotide == 'G') return 'C';
+        if (nucleotide == 'T') return 'A';
+        if (nucleotide == 'A') return 'U';
+        if (nucleotide == 'C') return 'G';
         throw new ArgumentOutOfRangeException(nameof(nucleotide));
     }
 }
