@@ -11,10 +11,11 @@ public static class Complement
 
     private static char MapDnaToRna(char nucleotide)
     {
-        if (nucleotide == 'G') return 'C';
-        if (nucleotide == 'T') return 'A';
-        if (nucleotide == 'A') return 'U';
-        if (nucleotide == 'C') return 'G';
-        throw new ArgumentOutOfRangeException(nameof(nucleotide));
+        var mapping = new Dictionary<char, char>();
+        mapping.Add('G', 'C');
+        mapping.Add('T', 'A');
+        mapping.Add('A', 'U');
+        mapping.Add('C', 'G');
+        return mapping[nucleotide];
     }
 }
