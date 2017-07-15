@@ -2,9 +2,13 @@ using System;
 
 public static class Complement
 {
-    public static string OfDna(string nucleotide)
+    public static string OfDna(params string[] nucleotides)
     {
-        return Solution1(nucleotide);
+        for (var i = 0; i < nucleotides.Length; i++)
+        {
+            return Solution1(nucleotides[i]);
+        }
+        throw new ArgumentOutOfRangeException(nameof(nucleotides));
     }
 
     private static string Solution1(string nucleotide)
