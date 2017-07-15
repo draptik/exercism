@@ -1,17 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class Complement
 {
     public static string OfDna(string nucleotides)
     {
-        var rnaNucleotids = new List<char>();
-        for (var i = 0; i < nucleotides.Length; i++)
-        {
-            rnaNucleotids.Add(MapDnaToRna(nucleotides[i]));
-        }
-        var result =  String.Join("", rnaNucleotids);
-        return result;
+        return new string(nucleotides.Select(n => MapDnaToRna(n)).ToArray());
     }
 
     private static char MapDnaToRna(char nucleotide)
