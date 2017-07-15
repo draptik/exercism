@@ -4,6 +4,9 @@ public static class Complement
 {
     public static string OfDna(string nucleotide)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        if (nucleotide == "G") return "C";
+        if (nucleotide == "T") return "A";
+        if (nucleotide == "A") return "U";
+        return "G";
     }
 }
