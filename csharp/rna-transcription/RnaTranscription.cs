@@ -11,11 +11,14 @@ public static class Complement
 
     private static char MapDnaToRna(char nucleotide)
     {
-        var mapping = new Dictionary<char, char>();
-        mapping.Add('G', 'C');
-        mapping.Add('T', 'A');
-        mapping.Add('A', 'U');
-        mapping.Add('C', 'G');
-        return mapping[nucleotide];
+        var dna2rnaMap = new Dictionary<char, char>
+        {
+            { 'G', 'C' },
+            { 'T', 'A' },
+            { 'A', 'U' },
+            { 'C', 'G' }
+        };
+        
+        return dna2rnaMap[nucleotide];
     }
 }
