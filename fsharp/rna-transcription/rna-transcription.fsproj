@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project Sdk="FSharp.NET.Sdk;Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="**/RNATranscription.fs"/>
+    <Compile Include="**/RNATranscriptionTest.fs"/>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FSharp.Core" Version="4.1.*"/>
+    <PackageReference Include="FSharp.NET.Sdk" Version="1.0.*" PrivateAssets="All"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.0.0"/>
+    <PackageReference Include="xunit" Version="2.2.0"/>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0"/>
+    <PackageReference Include="FluentAssertions" Version="4.19.3"/>
+    <PackageReference Include="FsUnit.xUnit" Version="1.4.1"/>
+  </ItemGroup>
+</Project>
