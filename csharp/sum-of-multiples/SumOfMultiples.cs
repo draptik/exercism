@@ -15,17 +15,23 @@ public static class SumOfMultiples
         return 0;
     }
 
+    private static List<int> GetAllPossibleMultipliers(int multiplier, int max)
+    {
+        var result = new List<int>();
+        for (int candidate = multiplier; candidate < max; candidate += multiplier)
+        {
+            result.Add(candidate);
+        }
+        return result;
+    }
     private static int Convert02(IEnumerable<int> multiples, int max)
     {
-        var numbers = new List<int>();
+        var result = new List<int>();
         foreach (var currentMultiple in multiples)
         {
-            for (int candidate = currentMultiple; candidate < max; candidate += currentMultiple)
-            {
-                numbers.Add(candidate);
-            }
+            result.AddRange(GetAllPossibleMultipliers(currentMultiple, max));
         }
-        return numbers.Distinct().Sum();
+        return result.Distinct().Sum();
     }
     
     public static int To(IEnumerable<int> multiples, int max)
