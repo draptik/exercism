@@ -8,7 +8,7 @@ let matchDna2Rna dna =
     | 'A' -> 'U'
     | _ -> 'x'
 
-// Using String.map with implicit signature
-let toRna dna = 
-    String.map matchDna2Rna dna
+// Stripping input parameter
 
+let toRna = 
+    String.map matchDna2Rna
