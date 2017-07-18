@@ -20,9 +20,13 @@ public static class SumOfMultiples
         // TODO Replace with LINQ
 
         var result = new List<int>();
-        for (int candidate = multiplier; candidate < max; candidate += multiplier)
+        // simplified for-loop by including if condition
+        for (int candidate = multiplier; candidate < max; candidate++)
         {
-            result.Add(candidate);
+            if (candidate % multiplier == 0)
+            {
+                result.Add(candidate);    
+            }
         }
         return result;
     }
