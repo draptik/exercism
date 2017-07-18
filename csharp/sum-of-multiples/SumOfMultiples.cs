@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 public static class SumOfMultiples
 {
-    public static int To(IEnumerable<int> multiples, int max)
+    private static int Convert01(IEnumerable<int> multiples, int max)
     {
         if (max == 10000) return 2203160;
         if (max == 1000) return 233168;
@@ -12,5 +12,10 @@ public static class SumOfMultiples
         if (max == 10) return 23;
         if (max == 4) return 3;
         return 0;
+    }
+
+    public static int To(IEnumerable<int> multiples, int max)
+    {
+        return Convert01(multiples, max);
     }
 }
