@@ -14,9 +14,11 @@ public static class SumOfMultiples
         if (max == 4) return 3;
         return 0;
     }
-
+    
     private static List<int> GetAllPossibleMultipliers(int multiplier, int max)
     {
+        // TODO Replace with LINQ
+
         var result = new List<int>();
         for (int candidate = multiplier; candidate < max; candidate += multiplier)
         {
@@ -24,6 +26,7 @@ public static class SumOfMultiples
         }
         return result;
     }
+
     private static int Convert02(IEnumerable<int> multiples, int max)
     {
         var result = new List<int>();
