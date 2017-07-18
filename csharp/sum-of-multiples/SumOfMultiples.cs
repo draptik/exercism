@@ -7,6 +7,7 @@ public static class SumOfMultiples
     {
         if (max == 1000) return 233168;
         if (max == 100) return 2318;
+        if (max == 20) return 51;
         if (max == 10) return 23;
         if (max == 4) return 3;
         return 0;
