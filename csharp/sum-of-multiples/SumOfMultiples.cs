@@ -15,15 +15,17 @@ public static class SumOfMultiples
         return 0;
     }
     
+    private static bool IsNumberDividableBy(int number, int dividableBy)
+    {
+        return number % dividableBy == 0;
+    }
+
     private static List<int> GetAllPossibleMultipliers(int multiplier, int max)
     {
-        // TODO Replace with LINQ
-
         var result = new List<int>();
-        // simplified for-loop by including if condition
         for (int candidate = multiplier; candidate < max; candidate++)
         {
-            if (candidate % multiplier == 0)
+            if (IsNumberDividableBy(candidate, multiplier))
             {
                 result.Add(candidate);    
             }
