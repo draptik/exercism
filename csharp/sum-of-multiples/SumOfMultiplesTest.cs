@@ -20,7 +20,7 @@ public class SumOfMultiplesTest
         Assert.Equal(23, SumOfMultiples.To(new[] { 3, 5 }, 10));
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Sum_to_100()
     {
        Assert.Equal(2318, SumOfMultiples.To(new[] { 3, 5 }, 100));
