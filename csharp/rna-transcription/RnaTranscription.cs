@@ -6,11 +6,6 @@ public static class Complement
 {
     public static string OfDna(string nucleotides)
     {
-        return new string(nucleotides.Select(n => MapDnaToRna(n)).ToArray());
-    }
-
-    private static char MapDnaToRna(char nucleotide)
-    {
         var dna2rnaMap = new Dictionary<char, char>
         {
             { 'G', 'C' },
@@ -18,7 +13,12 @@ public static class Complement
             { 'A', 'U' },
             { 'C', 'G' }
         };
-        
-        return dna2rnaMap[nucleotide];
+    
+        return new string(nucleotides.Select(n => MapDnaToRna(n, dna2rnaMap)).ToArray());
+    }
+
+    private static char MapDnaToRna(char nucleotide, Dictionary<char, char> map)
+    {
+        return map[nucleotide];
     }
 }
