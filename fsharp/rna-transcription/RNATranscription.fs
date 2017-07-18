@@ -8,7 +8,5 @@ let matchDna2Rna dna =
     | 'A' -> 'U'
     | _ -> 'x'
 
-// Stripping input parameter
-
-let toRna = 
-    String.map matchDna2Rna
+// Single line
+let toRna = String.map matchDna2Rna
