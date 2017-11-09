@@ -23,6 +23,6 @@ let ``Sum to 10`` () =
 let ``Sum to 20`` () =
     Assert.Equal(sumOfMultiples [7; 13; 17] 20, 51)
 
-// [<Fact>]
-// let ``Sum to 10000`` () =
-//     Assert.Equal(sumOfMultiples [43; 47] 10000, 2203160)
+[<Fact>]
+let ``Sum to 10000`` () =
+    Assert.Equal(sumOfMultiples [43; 47] 10000, 2203160)
