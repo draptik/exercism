@@ -7,9 +7,9 @@ open SumOfMultiples
 let ``Sum to 1`` () =
     Assert.Equal(sumOfMultiples [3; 5] 0, 0)
 
-// [<Fact>]
-// let ``Sum to 3`` () =
-//     Assert.Equal(sumOfMultiples [3; 5] 3, 0)
+[<Fact>]
+let ``Sum to 3`` () =
+    Assert.Equal(sumOfMultiples [3; 5] 3, 0)
 
 // [<Fact>]
 // let ``Sum to 4`` () =
