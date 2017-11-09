@@ -1,9 +1,14 @@
 ﻿module SumOfMultiples
 
+let isMultipleOfRule x y =
+    x % y = 0
+
+let doesRuleApplyToNumbers x numbers ruleFunc =
+    numbers
+    |> List.exists (ruleFunc x)
+
 let sumOfMultiples (numbers: int list) (upperBound: int): int =
-    match upperBound with
-    | 10000 -> 2203160
-    | 20 -> 51
-    | 10 -> 23
-    | 4 -> 3
-    | _ -> 0
+
+    [1 .. upperBound - 1]
+    |> List.filter (fun y -> doesRuleApplyToNumbers y numbers isMultipleOfRule)
+    |> List.sum
