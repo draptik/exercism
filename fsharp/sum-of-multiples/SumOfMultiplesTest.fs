@@ -15,9 +15,9 @@ let ``Sum to 3`` () =
 let ``Sum to 4`` () =
     Assert.Equal(sumOfMultiples [3; 5] 4, 3)
 
-// [<Fact>]
-// let ``Sum to 10`` () =
-//     Assert.Equal(sumOfMultiples [3; 5] 10, 23)
+[<Fact>]
+let ``Sum to 10`` () =
+    Assert.Equal(sumOfMultiples [3; 5] 10, 23)
 
 // [<Fact>]
 // let ``Sum to 20`` () =
