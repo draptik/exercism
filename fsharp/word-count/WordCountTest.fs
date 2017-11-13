@@ -11,7 +11,7 @@ let ``Count one word`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Count one of each`` () =
     let phrase = "one of each"
     let counts = Map.ofSeq [("one",  1);
