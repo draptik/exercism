@@ -1,4 +1,10 @@
 ﻿module Phrase
 
-let wordCount phrase =
-    Map.ofSeq [("word", 1)]
+open System
+
+let wordCount (phrase: string) =
+    let words = phrase.Split(" ")
+
+    words
+    |> Seq.countBy (fun x -> x.Trim())
+    |> Map.ofSeq
