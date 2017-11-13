@@ -20,7 +20,7 @@ let ``Count one of each`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Count multiple occurrences`` () =
     let phrase = "one fish two fish red fish blue fish"
     let counts = Map.ofSeq [("one",  1);
@@ -31,7 +31,7 @@ let ``Count multiple occurrences`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Count everything just once`` () =
     let phrase = "all the kings horses and all the kings men"
     let counts = Map.ofSeq [("all",    2);
@@ -43,7 +43,7 @@ let ``Count everything just once`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Ignore punctuation`` () =
     let phrase = "car : carpet as java : javascript!!&@$%^&"
     let counts = Map.ofSeq [("car",        1);
