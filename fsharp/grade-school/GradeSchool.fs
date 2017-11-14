@@ -4,12 +4,31 @@ let empty: Map<int, string list> =
     Map.empty
 
 let add (student: string) (grade: int) (school: Map<int, string list>): Map<int, string list> =
+    
+    printfn "ADD -----------"
+    printfn "ADD grade : %i; student : %s" grade student
+    printfn "ADD school : %A" school
+
     let schoolHasGrade = school.TryFind grade
     match schoolHasGrade with
-    | Some _ ->
-        Map.map (fun _ value -> List.append [student] value) school
+    | Some students ->
+        printfn "ADD students : %A" students
+
+        let r =
+            Map.map (fun key value ->
+                if key = grade then
+                    List.append [student] value
+                else
+                    value
+                    ) school
+        
+        // let r = Map.map (fun _ value -> List.append [student] value) school
+        printfn "ADD map after SOME : %A" r
+        r
     | None ->
-        Map.add grade [student] school
+        let r = Map.add grade [student] school
+        printfn "ADD map after NONE : %A" r
+        r
 
 let roster (school: Map<int, string list>): (int * string list) list =
     school 
