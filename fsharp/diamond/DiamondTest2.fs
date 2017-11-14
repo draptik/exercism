@@ -20,6 +20,8 @@ type DiamondPropertyAttribute () =
 let split (s : string) =
     s.Split([| Environment.NewLine |], StringSplitOptions.None)
 
+let trim (s : string) = s.Trim()
+
 [<DiamondProperty>]
 let ``Dimaond is non empty`` (letter : char) =
     // printfn "%c" letter
