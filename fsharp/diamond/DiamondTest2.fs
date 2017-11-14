@@ -123,3 +123,36 @@ let ``All rows except top and bottom have 2 identical letters`` (letter : char) 
     |> Array.filter (fun x -> not (x.Contains("A")))
     |> Array.map (fun x -> x.Replace(" ", ""))
     |> Array.forall isTwoIdenticalLetters
+
+[<DiamondProperty>]
+let ``Lower left space is a triangle`` (letter : char) =
+    let actual = make letter
+    let rows = split actual
+
+    // returns a collection of whitespace
+    // ie 
+    // [
+    // " "
+    // "  "
+    // "   "
+    // ]
+    let lowerLeftSpace =
+        rows
+        |> Seq.skipWhile (fun x -> not (x.Contains(string letter)))
+        |> Seq.map leadingSpaces
+        |> Seq.toList
+    
+    // maps to length of spaces, f.ex.:
+    // [
+    // 1
+    // 2
+    // 3
+    //]
+    let spaceCounts = lowerLeftSpace |> List.map (fun x -> x.Length)
+
+    let expected =
+        Seq.initInfinite id // Starts an infinite sequence...
+        |> Seq.take spaceCounts.Length // ... of which we will `take` only a part having the length of the actual result... 
+        |> Seq.toList // ...and convert it to a list
+
+    expected = spaceCounts
