@@ -6,7 +6,7 @@ open System
 open FsCheck
 open FsCheck.Xunit
 
-let make letter = "Devil's Advocate"
+let make letter = "      A  "
 
 
 type Letters =
