@@ -17,6 +17,9 @@ type Letters =
 type DiamondPropertyAttribute () =
     inherit PropertyAttribute(Arbitrary = [| typeof<Letters> |])
 
+let split (s : string) =
+    s.Split([| Environment.NewLine |], StringSplitOptions.None)
+
 [<DiamondProperty>]
 let ``Dimaond is non empty`` (letter: char) =
     // printfn "%c" letter
