@@ -20,11 +20,11 @@ let make letter =
         |> List.map string
         |> List.reduce (sprintf "%s%s")
 
-    let letters = ['A' .. letter] |> List.mapi (fun i l -> l, i)
+    let indexedLetters = ['A' .. letter] |> List.mapi (fun i l -> l, i)
 
-    letters
+    indexedLetters
     |> mirrorAndFuse 
-    |> List.map (makeLine letters.Length)
+    |> List.map (makeLine indexedLetters.Length)
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
 
