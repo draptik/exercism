@@ -54,7 +54,7 @@ let ``Ignore punctuation`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Handles cramped list`` () =
     let phrase = "one,two,three"
     let counts = Map.ofSeq [("one",   1);
@@ -63,7 +63,7 @@ let ``Handles cramped list`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Include numbers`` () =
     let phrase = "testing, 1, 2 testing"
     let counts = Map.ofSeq [("testing", 2);
@@ -72,14 +72,14 @@ let ``Include numbers`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Normalize case`` () =
     let phrase = "go Go GO"
     let counts = Map.ofSeq [("go", 3)]
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``With apostrophes`` () =
     let phrase = "First: don't laugh. Then: don't cry."
     let counts = Map.ofSeq [("first", 1);
@@ -90,14 +90,14 @@ let ``With apostrophes`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``With free standing apostrophes`` () =
     let phrase = "go ' Go '' GO"
     let counts = Map.ofSeq [("go", 3)]
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``With apostrophes as quotes`` () =
     let phrase = "She said, 'let's meet at twelve o'clock'"
     let counts = Map.ofSeq [("she",     1);
@@ -110,7 +110,7 @@ let ``With apostrophes as quotes`` () =
 
     wordCount phrase |> should equal counts
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``With multiple lines`` () =
     let phrase = "Your time will come. You will face the same Evil, and you will defeat it."
     let counts = Map.ofSeq [("and",    1);

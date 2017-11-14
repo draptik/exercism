@@ -1,10 +1,9 @@
 ﻿module Phrase
 
-open System
-
-let wordCount (phrase: string) =
-    let words = phrase.Split(" ")
-
-    words
-    |> Seq.countBy (fun x -> x.Trim())
+open System.Text.RegularExpressions
+ 
+let wordCount phrase =
+    Regex.Matches(phrase, @"\w+('\w+)*")
+    |> Seq.cast<Match>
+    |> Seq.countBy(fun m -> m.Value.ToLowerInvariant())
     |> Map.ofSeq
