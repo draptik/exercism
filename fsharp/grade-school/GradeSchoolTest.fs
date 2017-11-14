@@ -9,7 +9,7 @@ let ``Empty school has an empty roster`` () =
     let school = empty
     roster school |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Adding a student adds them to the roster for the given grade`` () =
     let school = empty |> add "Aimee" 2
     let expected = ["Aimee"]
