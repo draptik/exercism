@@ -37,3 +37,18 @@ let ``First row contains 'A'`` (letter : char) =
     // - A string is a sequence (`Seq`) of characters
     // - The 1st entry in a sequence is `Seq.head`
     rows |> Seq.head |> trim = "A"
+
+let leadingSpaces (x : string) =
+    let indexOfNonSpace = x.IndexOfAny [| 'A' .. 'Z' |]
+    x.Substring(0, indexOfNonSpace)
+
+let trailingSpaces (x : string) =
+    let lastIndexOfNonSpace = x.LastIndexOfAny [| 'A' .. 'Z' |]
+    x.Substring(lastIndexOfNonSpace + 1)
+
+[<DiamondProperty>]
+let ``All rows must have a symmetric contour`` (letter : char) =
+    let actual = make letter
+
+    let rows = split actual
+    rows |> Array.forall (fun r -> (leadingSpaces r) = (trailingSpaces r))
