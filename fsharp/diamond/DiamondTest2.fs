@@ -6,8 +6,10 @@ open System
 open FsCheck
 open FsCheck.Xunit
 
-let make letter = "      A      "
-
+let make letter = //"      A      "
+    ['A' .. letter]
+    |> List.map (fun _ -> "A")
+    |> List.reduce (fun x y -> sprintf "%s%s%s" x Environment.NewLine y)
 
 type Letters =
     static member Chars () =
@@ -60,13 +62,6 @@ let ``Top of figure has correct letters in correct order`` (letter : char) =
     let expected = ['A' .. letter]
     let rows = split actual
     
-    // This might throw the following exception:
-    //
-    // Falsifiable, after 1 test (0 shrinks) (StdGen (850338280,296376101)):
-    // Original:
-    // 'P'
-    //
-    // ---- System.InvalidOperationException : tried to take The input sequence has an insufficient number of elements. 1 past the end of the seq
     let firstNonWhiteSpaceLetters =
         rows
         |> Seq.take expected.Length // take as many rows as expected entries
