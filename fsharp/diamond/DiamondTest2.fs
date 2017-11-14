@@ -7,14 +7,14 @@ open FsCheck
 open FsCheck.Xunit
 
 let make letter =
-    let makeLine letter =
+    let makeLine letterCount letter =
         string letter
 
     let letters = ['A' .. letter]
 
     letters
     @ (letters |> List.rev |> List.tail)
-    |> List.map makeLine
+    |> List.map (makeLine letters.Length)
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
 
