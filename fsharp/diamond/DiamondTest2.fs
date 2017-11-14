@@ -61,8 +61,10 @@ let ``Top of figure has correct letters in correct order`` (letter : char) =
     let firstNonWhiteSpaceLetters =
         rows
         |> Seq.take expected.Length // take as many rows as expected entries
-        |> Seq.map trim // remove all whitespace from each row
-        |> Seq.map Seq.head // take first char of each row
+        // |> Seq.map trim // remove all whitespace from each row
+        // |> Seq.map Seq.head // take first char of each row
+        |> Seq.map (trim >> Seq.head) // remove all whitespace from each row and take first char of each row
         |> Seq.toList // convert to list
 
     expected = firstNonWhiteSpaceLetters
+
