@@ -6,9 +6,9 @@ open System
 open FsCheck
 open FsCheck.Xunit
 
-let make letter = //"      A      "
+let make letter =
     ['A' .. letter]
-    |> List.map (fun x -> x.ToString())
+    |> List.map string
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
 
