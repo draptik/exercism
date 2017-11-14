@@ -8,7 +8,8 @@ open FsCheck.Xunit
 
 let make letter =
     let makeLine letterCount letter =
-        string letter
+        let padding = String(' ', letterCount - 1)
+        sprintf "%s%c%s" padding letter padding
 
     let letters = ['A' .. letter]
 
