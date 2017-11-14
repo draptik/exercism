@@ -14,7 +14,9 @@ let make letter =
         | 'A' ->
             sprintf "%s%c%s" leadingSpace letter leadingSpace
         | _ ->
-            let left = sprintf "%c%s" letter leadingSpace |> Seq.toList
+            let left = 
+                sprintf "%s%c%s" leadingSpace letter innerSpace 
+                |> Seq.toList
             left
             @ (left |> List.rev |> List.tail)
             |> List.map string
