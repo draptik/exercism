@@ -8,7 +8,7 @@ open FsCheck.Xunit
 
 let make letter =
     let makeLine letterCount (letter, letterIndex) =
-        let leadingSpaces = String(' ', letterCount - 1)
+        let leadingSpaces = String(' ', letterCount - 1 - letterIndex)
         match letter with
         | 'A' ->
             sprintf "%s%c%s" leadingSpaces letter leadingSpaces
