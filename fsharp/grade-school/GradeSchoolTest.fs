@@ -44,7 +44,7 @@ let ``Grade returns the students in that grade in alphabetical order`` () =
     let expected = ["Bradley"; "Franklin"]
     grade 5 school |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Grade returns an empty list if there are no students in that grade`` () =
     let school = empty
     grade 1 school |> should be Empty
