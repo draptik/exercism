@@ -7,7 +7,7 @@ open FsCheck
 open FsCheck.Xunit
 
 let make letter =
-    let makeLine letterCount letter =
+    let makeLine letterCount (letter, letterIndex) =
         let padding = String(' ', letterCount - 1)
         match letter with
         | 'A' ->
@@ -19,7 +19,8 @@ let make letter =
             |> List.map string
             |> List.reduce (sprintf "%s%s")
 
-    let letters = ['A' .. letter]
+    let letters = ['A' .. letter] |> List.mapi (fun i l -> l, i)
+
     letters
     @ (letters |> List.rev |> List.tail)
     |> List.map (makeLine letters.Length)
