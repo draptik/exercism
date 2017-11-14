@@ -15,13 +15,15 @@ let make letter =
         let left = 
             sprintf "%s%c%s" leadingSpace letter innerSpace 
             |> Seq.toList
-        mirrorAndFuse left
+        left
+        |> mirrorAndFuse 
         |> List.map string
         |> List.reduce (sprintf "%s%s")
 
     let letters = ['A' .. letter] |> List.mapi (fun i l -> l, i)
 
-    mirrorAndFuse letters
+    letters
+    |> mirrorAndFuse 
     |> List.map (makeLine letters.Length)
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
