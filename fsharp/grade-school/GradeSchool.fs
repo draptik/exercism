@@ -5,10 +5,10 @@ let empty: Map<int, string list> =
 
 let mapStudentToGrade grade student school =
     Map.map (fun key value ->
-            if key = grade then
+            match key with
+            | k when k = grade -> 
                 List.append [student] value
-            else
-                value
+            | _ -> value
             ) school
 
 let add (student: string) (grade: int) (school: Map<int, string list>): Map<int, string list> =
