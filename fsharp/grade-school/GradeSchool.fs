@@ -18,4 +18,4 @@ let grade (number: int) (school: Map<int, string list>): string list =
     let schoolHasGrade = school.TryFind number
     match schoolHasGrade with
     | Some students -> List.sort students
-    | None -> [""]
+    | None -> []
