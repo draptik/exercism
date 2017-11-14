@@ -101,3 +101,18 @@ let ``Diamond is as wide as it is high`` (letter : char) =
     
     let expected = rows.Length
     rows |> Array.forall (fun x -> x.Length = expected)
+
+[<DiamondProperty>]
+let ``All rows except top and bottom have 2 identical letters`` (letter : char) =
+    let actual = make letter
+    let rows = split actual
+    
+    let isTwoIdenticalLetters x =
+        let hasIdenticalLetters = x |> Seq.distinct |> Seq.length = 1
+        let hasTwoLetters = x |> Seq.length = 2
+        hasIdenticalLetters && hasTwoLetters
+
+    rows
+    |> Array.filter (fun x -> not (x.Contains("A")))
+    |> Array.map (fun x -> x.Replace(" ", ""))
+    |> Array.forall isTwoIdenticalLetters
