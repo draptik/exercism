@@ -34,7 +34,7 @@ let ``Adding students to different grades adds them to the roster`` () =
     grade 3 school |> should equal ["Chelsea"]
     grade 7 school |> should equal ["Logan"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Grade returns the students in that grade in alphabetical order`` () =
     let school = 
         empty
