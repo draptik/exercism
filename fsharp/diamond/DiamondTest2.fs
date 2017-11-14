@@ -7,7 +7,11 @@ open FsCheck
 open FsCheck.Xunit
 
 let make letter =
-    ['A' .. letter]
+    let letters = ['A' .. letter]
+
+    // `@` symbol in list: concat
+    letters
+    @ (letters |> List.rev |> List.tail)
     |> List.map string
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
