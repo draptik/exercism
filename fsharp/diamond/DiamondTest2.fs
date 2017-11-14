@@ -36,4 +36,4 @@ let ``First row contains 'A'`` (letter : char) =
     // Note: 
     // - A string is a sequence (`Seq`) of characters
     // - The 1st entry in a sequence is `Seq.head`
-    rows |> Seq.head |> Seq.exists ((=) 'A')
+    rows |> Seq.head |> trim = "A"
