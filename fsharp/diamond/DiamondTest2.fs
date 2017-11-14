@@ -21,8 +21,17 @@ let split (s : string) =
     s.Split([| Environment.NewLine |], StringSplitOptions.None)
 
 [<DiamondProperty>]
-let ``Dimaond is non empty`` (letter: char) =
+let ``Dimaond is non empty`` (letter : char) =
     // printfn "%c" letter
     let actual = make letter
     not (String.IsNullOrWhiteSpace actual)
 
+[<DiamondProperty>]
+let ``First row contains 'A'`` (letter : char) =
+    let actual = make letter
+    let rows = split actual
+
+    // Note: 
+    // - A string is a sequence (`Seq`) of characters
+    // - The 1st entry in a sequence is `Seq.head`
+    rows |> Seq.head |> Seq.exists ((=) 'A')
