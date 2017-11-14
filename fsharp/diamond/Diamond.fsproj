@@ -5,6 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Diamond.fs" />
+    <Compile Include="DiamondTest2.fs" />
     <Compile Include="DiamondTest.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
