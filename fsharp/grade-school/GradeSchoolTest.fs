@@ -25,7 +25,7 @@ let ``Adding more students to the same grade adds them to the roster`` () =
     let expected = ["Blair"; "James"; "Paul"]
     grade 2 school |> should equal expected
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Adding students to different grades adds them to the roster`` () =
     let school = 
         empty
