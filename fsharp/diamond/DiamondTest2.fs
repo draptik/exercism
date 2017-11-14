@@ -8,12 +8,13 @@ open FsCheck.Xunit
 
 let make letter =
     let makeLine letterCount (letter, letterIndex) =
-        let leadingSpaces = String(' ', letterCount - 1 - letterIndex)
+        let leadingSpace = String(' ', letterCount - 1 - letterIndex)
+        let innerSpace = String(' ', letterCount - 1 - leadingSpace.Length)
         match letter with
         | 'A' ->
-            sprintf "%s%c%s" leadingSpaces letter leadingSpaces
+            sprintf "%s%c%s" leadingSpace letter leadingSpace
         | _ ->
-            let left = sprintf "%c%s" letter leadingSpaces |> Seq.toList
+            let left = sprintf "%c%s" letter leadingSpace |> Seq.toList
             left
             @ (left |> List.rev |> List.tail)
             |> List.map string
