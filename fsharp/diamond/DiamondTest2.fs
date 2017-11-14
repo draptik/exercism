@@ -8,8 +8,11 @@ open FsCheck.Xunit
 
 let make letter = //"      A      "
     ['A' .. letter]
-    |> List.map (fun _ -> "A")
-    |> List.reduce (fun x y -> sprintf "%s%s%s" x Environment.NewLine y)
+    |> List.map (fun x -> x.ToString())
+    |> List.reduce (fun x y -> 
+        sprintf "%s%s%s" x Environment.NewLine y)
+
+
 
 type Letters =
     static member Chars () =
@@ -58,6 +61,7 @@ let ``All rows must have a symmetric contour`` (letter : char) =
 [<DiamondProperty>]
 let ``Top of figure has correct letters in correct order`` (letter : char) =
     let actual = make letter
+    printfn "%s" actual
 
     let expected = ['A' .. letter]
     let rows = split actual
