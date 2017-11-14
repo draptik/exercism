@@ -7,21 +7,21 @@ open FsCheck
 open FsCheck.Xunit
 
 let make letter =
+    let mirrorAndFuse l = l @ (l |> List.rev |> List.tail)
+
     let makeLine letterCount (letter, letterIndex) =
         let leadingSpace = String(' ', letterCount - 1 - letterIndex)
         let innerSpace = String(' ', letterCount - 1 - leadingSpace.Length)
         let left = 
             sprintf "%s%c%s" leadingSpace letter innerSpace 
             |> Seq.toList
-        left
-        @ (left |> List.rev |> List.tail)
+        mirrorAndFuse left
         |> List.map string
         |> List.reduce (sprintf "%s%s")
 
     let letters = ['A' .. letter] |> List.mapi (fun i l -> l, i)
 
-    letters
-    @ (letters |> List.rev |> List.tail)
+    mirrorAndFuse letters
     |> List.map (makeLine letters.Length)
     |> List.reduce (fun x y -> 
         sprintf "%s%s%s" x Environment.NewLine y)
