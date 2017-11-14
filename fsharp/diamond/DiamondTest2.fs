@@ -29,7 +29,6 @@ let trim (s : string) = s.Trim()
 
 [<DiamondProperty>]
 let ``Dimaond is non empty`` (letter : char) =
-    // printfn "%c" letter
     let actual = make letter
     not (String.IsNullOrWhiteSpace actual)
 
@@ -37,10 +36,6 @@ let ``Dimaond is non empty`` (letter : char) =
 let ``First row contains 'A'`` (letter : char) =
     let actual = make letter
     let rows = split actual
-
-    // Note: 
-    // - A string is a sequence (`Seq`) of characters
-    // - The 1st entry in a sequence is `Seq.head`
     rows |> Seq.head |> trim = "A"
 
 let leadingSpaces (x : string) =
@@ -54,15 +49,12 @@ let trailingSpaces (x : string) =
 [<DiamondProperty>]
 let ``All rows must have a symmetric contour`` (letter : char) =
     let actual = make letter
-
     let rows = split actual
     rows |> Array.forall (fun r -> (leadingSpaces r) = (trailingSpaces r))
 
 [<DiamondProperty>]
 let ``Top of figure has correct letters in correct order`` (letter : char) =
     let actual = make letter
-    printfn "%s" actual
-
     let expected = ['A' .. letter]
     let rows = split actual
     
