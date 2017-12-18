@@ -11,20 +11,25 @@ public static class TwelveDaysSong
     {
         if (verseNumber == 3)
         {
-            return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
+            return $"{IntroSentence(verseNumber)} three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
         }
         
         if (verseNumber == 2)
         {
-            return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n";
+            return $"{IntroSentence(verseNumber)} two Turtle Doves, and a Partridge in a Pear Tree.\n";
         }
         
-        return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me, a Partridge in a Pear Tree.\n";
+        return $"{IntroSentence(verseNumber)} a Partridge in a Pear Tree.\n";
     }
 
     public static string Verses(int start, int end)
     {
         throw new NotImplementedException("You need to implement this function.");
+    }
+
+    private static string IntroSentence(int verseNumber)
+    {
+        return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me,";
     }
 
     private static string EnumeratedChristmasDay(int day) 
