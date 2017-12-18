@@ -17,12 +17,9 @@ public class TwelveDaysTest
             .Be("On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n");
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Return_verse_3()
     {
-        // var expected = "On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-
-        // Assert.Equal(expected, TwelveDaysSong.Verse(3));
         TwelveDaysSong.Verse(3).Should()
             .Be("On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
     }
