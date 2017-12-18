@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class TwelveDaysSong
 {
@@ -10,6 +11,10 @@ public static class TwelveDaysSong
 
     public static string Verse(int verseNumber)
     {
+        // Console.WriteLine("Hello");
+        // var result = GetItems(verseNumber);
+        // Console.WriteLine(result);
+        // return result;
         if (verseNumber == 3)
         {
             return $"{IntroSentence(verseNumber)}, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
@@ -28,19 +33,28 @@ public static class TwelveDaysSong
         throw new NotImplementedException("You need to implement this function.");
     }
 
-    private static List<string> songLines = new List<string>{
-        "twelve Drummers Drumming", 
-        "eleven Pipers Piping", 
-        "ten Lords-a-Leaping", 
-        "nine Ladies Dancing", 
-        "eight Maids-a-Milking",
-        "seven Swans-a-Swimming", 
-        "six Geese-a-Laying", 
-        "five Gold Rings", 
-        "four Calling Birds", 
-        "three French Hens", 
-        "two Turtle Doves", 
-        "and a Partridge in a Pear Tree."
+    private static string GetItems(int verseNumber)
+    {
+        return songLines
+                .Where(x => x.Key <= verseNumber)
+                .OrderBy(x => x.Key)
+                .Reverse()
+                .Select(x => x.Value)
+                .Aggregate((allItems, next) => allItems + next);
+    }
+    private static Dictionary<int, string> songLines = new Dictionary<int, string>{
+        {12, "twelve Drummers Drumming"}, 
+        {11, "eleven Pipers Piping"}, 
+        {10, "ten Lords-a-Leaping"}, 
+        {9, "nine Ladies Dancing"}, 
+        {8, "eight Maids-a-Milking"},
+        {7, "seven Swans-a-Swimming"}, 
+        {6, "six Geese-a-Laying"}, 
+        {5, "five Gold Rings"}, 
+        {4, "four Calling Birds"}, 
+        {3, "three French Hens"}, 
+        {2, "two Turtle Doves"}, 
+        {1, "and a Partridge in a Pear Tree."}
     };
 
     private static string IntroSentence(int verseNumber)
