@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public static class TwelveDaysSong
 {
@@ -26,6 +27,21 @@ public static class TwelveDaysSong
     {
         throw new NotImplementedException("You need to implement this function.");
     }
+
+    private static List<string> songLines = new List<string>{
+        "twelve Drummers Drumming", 
+        "eleven Pipers Piping", 
+        "ten Lords-a-Leaping", 
+        "nine Ladies Dancing", 
+        "eight Maids-a-Milking",
+        "seven Swans-a-Swimming", 
+        "six Geese-a-Laying", 
+        "five Gold Rings", 
+        "four Calling Birds", 
+        "three French Hens", 
+        "two Turtle Doves", 
+        "and a Partridge in a Pear Tree."
+    };
 
     private static string IntroSentence(int verseNumber)
     {
