@@ -10,13 +10,9 @@ public class TwelveDaysTest
             .Be("On the first day of Christmas my true love gave to me, a Partridge in a Pear Tree.\n");
     }
 
-    [Fact(Skip = "Remove to run test")]
+    [Fact]
     public void Return_verse_2()
     {
-        // var expected = "On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-
-        // Assert.Equal(expected, TwelveDaysSong.Verse(2));
-
         TwelveDaysSong.Verse(2).Should()
             .Be("On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n");
     }
