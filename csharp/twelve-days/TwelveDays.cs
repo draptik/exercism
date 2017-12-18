@@ -9,7 +9,7 @@ public static class TwelveDaysSong
 
     public static string Verse(int verseNumber)
     {
-        throw new NotImplementedException("You need to implement this function.");
+        return "On the first day of Christmas my true love gave to me, a Partridge in a Pear Tree.\n";
     }
 
     public static string Verses(int start, int end)
