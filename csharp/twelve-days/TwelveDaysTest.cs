@@ -132,7 +132,7 @@ public class TwelveDaysTest
         TwelveDaysSong.Verses(1, 3).Should()
             .Be("On the first day of Christmas my true love gave to me, a Partridge in a Pear Tree.\n\n" +
           "On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n\n" +
-          "On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n\n")
+          "On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n\n");
     }
 
     [Fact(Skip = "Remove to run test")]
