@@ -11,15 +11,15 @@ public static class TwelveDaysSong
     {
         if (verseNumber == 3)
         {
-            return $"{IntroSentence(verseNumber)} three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
+            return $"{IntroSentence(verseNumber)}, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
         }
         
         if (verseNumber == 2)
         {
-            return $"{IntroSentence(verseNumber)} two Turtle Doves, and a Partridge in a Pear Tree.\n";
+            return $"{IntroSentence(verseNumber)}, two Turtle Doves, and a Partridge in a Pear Tree.\n";
         }
         
-        return $"{IntroSentence(verseNumber)} a Partridge in a Pear Tree.\n";
+        return $"{IntroSentence(verseNumber)}, a Partridge in a Pear Tree.\n";
     }
 
     public static string Verses(int start, int end)
@@ -29,7 +29,7 @@ public static class TwelveDaysSong
 
     private static string IntroSentence(int verseNumber)
     {
-        return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me,";
+        return $"On the {EnumeratedChristmasDay(verseNumber)} day of Christmas my true love gave to me";
     }
 
     private static string EnumeratedChristmasDay(int day) 
