@@ -43,5 +43,4 @@ let verse day =
 let recite start stop =
     [start..stop]
     |> List.map(verse)
-    |> List.reduce(fun x y -> x + "\n"+ y)
-// recite 1 12    
+recite 1 12    
