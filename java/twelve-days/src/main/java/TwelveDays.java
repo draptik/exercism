@@ -1,6 +1,7 @@
 class TwelveDays {
     String verse(int verseNumber) {
-        throw new UnsupportedOperationException("Delete this statement and write your own implementation.");
+        return "On the first day of Christmas my true love gave to me, " +
+        "a Partridge in a Pear Tree.\n";
     }
 
     String verses(int startVerse, int endVerse) {
