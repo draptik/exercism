@@ -15,7 +15,7 @@ public class TwelveDaysTest {
     @Test
     public void testVerseOne() {
         String expectedVerseOne = "On the first day of Christmas my true love gave to me, " +
-                "a Partridge in a Pear Tree.\n";
+                "a Partridge in a Pear Treex.\n";
         assertEquals(expectedVerseOne, twelveDays.verse(1));
     }
 
