@@ -13,18 +13,7 @@ namespace TwelveDays
 
         public static string Verse(int verseNumber)
         {
-            return $"{IntroSentence(verseNumber)}, {GetItems(verseNumber)}\n";
-            if (verseNumber == 3)
-            {
-                return $"{IntroSentence(verseNumber)}, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-            }
-        
-            if (verseNumber == 2)
-            {
-                return $"{IntroSentence(verseNumber)}, two Turtle Doves, and a Partridge in a Pear Tree.\n";
-            }
-        
-            return $"{IntroSentence(verseNumber)}, a Partridge in a Pear Tree.\n";
+            return $"{IntroSentence(verseNumber)}, {GetItems(verseNumber)}";
         }
 
         public static string Verses(int start, int end)
@@ -36,10 +25,15 @@ namespace TwelveDays
         {
             return SongLines
                 .Where(x => x.Key <= verseNumber)
-                .OrderBy(x => x.Key)
-                .Reverse()
+                .OrderByDescending(x => x.Key)
                 .Select(x => x.Value)
-                .Aggregate((allItems, next) => allItems + next);
+                .Select(x => ModifyIfNotFirstVerse(x, verseNumber))
+                .Aggregate((allItems, next) => allItems + ", " + next) + "\n";
+        }
+
+        private static string ModifyIfNotFirstVerse(string songline, int verseNumber)
+        {
+            return verseNumber == 1 ? songline.Replace("and ", "") : songline;
         }
 
         private static readonly Dictionary<int, string> SongLines = new Dictionary<int, string>{
@@ -54,7 +48,7 @@ namespace TwelveDays
             {4, "four Calling Birds"}, 
             {3, "three French Hens"}, 
             {2, "two Turtle Doves"}, 
-            {1, "a Partridge in a Pear Tree."}
+            {1, "and a Partridge in a Pear Tree."}
         };
 
         private static string IntroSentence(int verseNumber)
@@ -73,11 +67,12 @@ namespace TwelveDays
                 case 5: return "fifth";
                 case 6: return "sixth";
                 case 7: return "seventh";
-                case 8: return "eight";
+                case 8: return "eighth";
                 case 9: return "ninth";
                 case 10: return "tenth";
                 case 11: return "eleventh";
-                default: throw new Exception("Not a christmas day, you grunch!");
+                case 12: return "twelfth";
+                default: throw new Exception("Not a christmas day, you grinch!");
             }
         }
     }

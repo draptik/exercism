@@ -17,7 +17,7 @@ namespace TwelveDays
             actual.Should().Be(expected);
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_2()
         {
             var expected = "On the second day of Christmas my true love gave to me, two Turtle Doves, and a Partridge in a Pear Tree.\n";
@@ -26,14 +26,14 @@ namespace TwelveDays
             actual.Should().Be(expected);
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_3()
         {
             TwelveDaysSong.Verse(3).Should()
                 .Be("On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_4()
         {
             TwelveDaysSong.Verse(4).Should()
@@ -41,56 +41,56 @@ namespace TwelveDays
         }
 
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_5()
         {
             TwelveDaysSong.Verse(5).Should()
                 .Be("On the fifth day of Christmas my true love gave to me, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_6()
         {
             TwelveDaysSong.Verse(6).Should()
                 .Be("On the sixth day of Christmas my true love gave to me, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_7()
         {
             TwelveDaysSong.Verse(7).Should()
                 .Be("On the seventh day of Christmas my true love gave to me, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_8()
         {
             TwelveDaysSong.Verse(8).Should()
                 .Be("On the eighth day of Christmas my true love gave to me, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_9()
         {
             TwelveDaysSong.Verse(9).Should()
                 .Be("On the ninth day of Christmas my true love gave to me, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_10()
         {
             TwelveDaysSong.Verse(10).Should()
                 .Be("On the tenth day of Christmas my true love gave to me, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_11()
         {
             TwelveDaysSong.Verse(11).Should()
                 .Be("On the eleventh day of Christmas my true love gave to me, eleven Pipers Piping, ten Lords-a-Leaping, nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, six Geese-a-Laying, five Gold Rings, four Calling Birds, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_verse_12()
         {
             TwelveDaysSong.Verse(12).Should()
