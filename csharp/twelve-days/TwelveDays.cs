@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 
 namespace TwelveDays
 {
@@ -18,7 +19,9 @@ namespace TwelveDays
 
         public static string Verses(int start, int end)
         {
-            throw new NotImplementedException("You need to implement this function.");
+            return Enumerable.Range(start, end)
+                .Select(Verse)
+                .Aggregate((a, b) => a + "\n" + b) + "\n";
         }
 
         private static string GetItems(int verseNumber)
