@@ -9,7 +9,7 @@ namespace TwelveDays
     {
         public static string Sing()
         {
-            throw new NotImplementedException("You need to implement this function.");
+            return Verses(1, 12);
         }
 
         public static string Verse(int verseNumber)
