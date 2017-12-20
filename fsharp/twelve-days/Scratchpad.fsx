@@ -1,4 +1,5 @@
 
+open System
 
 let days = ["first"; "second"; "third"; "fourth"; "fifth"; "sixth"; "seventh"; "eighth"; "ninth"; "tenth"; "eleventh"; "twelfth"]
 
@@ -20,21 +21,27 @@ let songlines = [
 let introSentence day =
     "On the " + days.[day - 1] + " day of Christmas my true love gave to me"
 
+let modifyFirstDay (line:string, day) =
+    match day with
+    | 1 -> line.Replace("and ", "")
+    | _ -> line
+
 let getItems day =
     songlines
     |> List.filter(fun x -> (fst(x) <= day))
     |> List.sortBy(fun x -> (fst(x)))
     |> List.rev
     |> List.map(fun x -> snd(x))
+    |> List.map(fun x -> modifyFirstDay(x, day))
     |> List.reduce(fun content i -> content + ", " + i)
 // getItems 10
 
 let verse day =
     introSentence day + ", " + getItems day
-// verse 2
+// verse 1
 
 let recite start stop =
     [start..stop]
     |> List.map(verse)
     |> List.reduce(fun x y -> x + "\n"+ y)
-// recite 1 1    
+// recite 1 12    
