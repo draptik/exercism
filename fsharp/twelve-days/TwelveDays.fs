@@ -2,7 +2,6 @@
 
 let days = ["first"; "second"; "third"; "fourth"; "fifth"; "sixth"; "seventh"; "eighth"; "ninth"; "tenth"; "eleventh"; "twelfth"]
 
-
 let songlines = [
     (12, "twelve Drummers Drumming"); 
     (11, "eleven Pipers Piping"); 
@@ -41,4 +40,3 @@ let verse day =
 let recite start stop =
     [start..stop]
     |> List.map(verse)
-    // |> List.reduce(fun x y -> x + "\n"+ y)
