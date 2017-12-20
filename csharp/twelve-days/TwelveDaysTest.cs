@@ -106,7 +106,7 @@ namespace TwelveDays
               "On the third day of Christmas my true love gave to me, three French Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n\n");
         }
 
-        [Fact(Skip = "Remove to run test")]
+        [Fact]
         public void Return_entire_song()
         {
             TwelveDaysSong.Sing().Should()
