@@ -60,25 +60,19 @@ let prettifyMoney locale currency value =
             else ""
         else ""
 
+let getValue x = float x.chg / 100.0
+
 let formatLedger currency locale entries =
     
-    let mutable res = ""
+    let headline = createHeadline locale
 
-    res <- createHeadline locale
-        
-    for x in List.sortBy (fun x -> x.dat, x.des, x.chg) entries do
+    let content =
+        match entries with
+        | [] -> "" 
+        | _ -> 
+            entries
+            |> List.sortBy (fun x -> x.dat, x.des, x.chg)
+            |> List.map(fun x -> "\n" + (formatDate x.dat locale) + " | " + (formatDescription x.des) + " | " + (prettifyMoney locale currency (getValue x)))
+            |> List.reduce(( + ))
 
-        res <- res + "\n"
-
-        res <- res + formatDate x.dat locale
-                
-        res <- res + " | "
-
-        res <- res + formatDescription x.des
-
-        res <- res + " | "
-        let c = float x.chg / 100.0
-
-        res <- res + prettifyMoney locale currency c
-
-    res
+    headline + content
