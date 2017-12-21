@@ -13,7 +13,11 @@ let createHeadline locale =
     | "nl-NL" -> "Datum      | Omschrijving              | Verandering  "
     | _ -> ""
 
-
+let formatDate (date:DateTime) locale =
+    match locale with
+    | "nl-NL" -> date.ToString("dd-MM-yyyy")
+    | "en-US" -> date.ToString("MM\/dd\/yyyy")
+    | _ -> ""
 
 let formatLedger currency locale entries =
     
@@ -25,11 +29,7 @@ let formatLedger currency locale entries =
 
         res <- res + "\n"
 
-        if locale = "nl-NL" then 
-            res <- res + x.dat.ToString("dd-MM-yyyy")
-
-        if locale = "en-US" then 
-            res <- res + x.dat.ToString("MM\/dd\/yyyy")
+        res <- res + formatDate x.dat locale
                 
         res <- res + " | "
 
