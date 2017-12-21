@@ -28,7 +28,7 @@ let formatDescription (description:string) =
         description.[0..21] + "..."
 
 let formatMoney (locale:string) (value:float) =
-    value.ToString("#,#0.00", new CultureInfo(locale))
+    value.ToString("#,#0.00", CultureInfo(locale))
 
 let formatLedger currency locale entries =
     
