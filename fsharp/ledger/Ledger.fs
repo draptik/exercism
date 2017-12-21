@@ -30,6 +30,36 @@ let formatDescription (description:string) =
 let formatMoney (locale:string) (value:float) =
     value.ToString("#,#0.00", CultureInfo(locale))
 
+let prettifyMoney locale currency value =
+    if value < 0.0 then 
+        if locale = "nl-NL" then
+            if currency = "USD" then
+                ("$ " + formatMoney locale value).PadLeft(13) 
+            elif currency = "EUR" then
+                ("€ " + formatMoney locale value).PadLeft(13) 
+            else ""
+        elif locale = "en-US" then
+            if currency = "USD" then
+                ("($" + (formatMoney locale value).Substring(1) + ")").PadLeft(13) 
+            elif currency = "EUR" then
+                ("(€" + (formatMoney locale value).Substring(1) + ")").PadLeft(13) 
+            else ""
+        else ""
+    else 
+        if locale = "nl-NL" then
+            if currency = "USD" then
+                ("$ " + formatMoney locale value + " ").PadLeft(13) 
+            elif currency = "EUR" then
+                ("€ " + formatMoney locale value + " ").PadLeft(13) 
+            else ""
+        elif locale = "en-US" then
+            if currency = "USD" then
+                ("$" + (formatMoney locale value) + " ").PadLeft(13) 
+            elif currency = "EUR" then
+                ("€" + (formatMoney locale value) + " ").PadLeft(13) 
+            else ""
+        else ""
+
 let formatLedger currency locale entries =
     
     let mutable res = ""
@@ -49,26 +79,6 @@ let formatLedger currency locale entries =
         res <- res + " | "
         let c = float x.chg / 100.0
 
-        if c < 0.0 then 
-            if locale = "nl-NL" then
-                if currency = "USD" then
-                    res <- res + ("$ " + formatMoney locale c).PadLeft(13) 
-                if currency = "EUR" then
-                    res <- res + ("€ " + formatMoney locale c).PadLeft(13) 
-            if locale = "en-US" then
-                if currency = "USD" then
-                    res <- res + ("($" + (formatMoney locale c).Substring(1) + ")").PadLeft(13) 
-                if currency = "EUR" then
-                    res <- res + ("(€" + (formatMoney locale c).Substring(1) + ")").PadLeft(13) 
-        else 
-            if locale = "nl-NL" then
-                if currency = "USD" then
-                    res <- res + ("$ " + formatMoney locale c + " ").PadLeft(13) 
-                if currency = "EUR" then
-                    res <- res + ("€ " + formatMoney locale c + " ").PadLeft(13) 
-            if locale = "en-US" then
-                if currency = "USD" then
-                    res <- res + ("$" + (formatMoney locale c) + " ").PadLeft(13) 
-                if currency = "EUR" then
-                    res <- res + ("€" + (formatMoney locale c) + " ").PadLeft(13) 
+        res <- res + prettifyMoney locale currency c
+
     res
