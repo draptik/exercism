@@ -30,34 +30,18 @@ let formatDescription (description:string) =
 let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", CultureInfo(locale))
 
 let prettifyMoney locale currency value =
-    if value < 0.0 then 
-        if locale = "nl-NL" then
-            if currency = "USD" then
-                ("$ " + formatMoney locale value).PadLeft(13) 
-            elif currency = "EUR" then
-                ("€ " + formatMoney locale value).PadLeft(13) 
-            else ""
-        elif locale = "en-US" then
-            if currency = "USD" then
-                ("($" + (formatMoney locale value).Substring(1) + ")").PadLeft(13) 
-            elif currency = "EUR" then
-                ("(€" + (formatMoney locale value).Substring(1) + ")").PadLeft(13) 
-            else ""
-        else ""
-    else 
-        if locale = "nl-NL" then
-            if currency = "USD" then
-                ("$ " + formatMoney locale value + " ").PadLeft(13) 
-            elif currency = "EUR" then
-                ("€ " + formatMoney locale value + " ").PadLeft(13) 
-            else ""
-        elif locale = "en-US" then
-            if currency = "USD" then
-                ("$" + (formatMoney locale value) + " ").PadLeft(13) 
-            elif currency = "EUR" then
-                ("€" + (formatMoney locale value) + " ").PadLeft(13) 
-            else ""
-        else ""
+    let formattedMoney = formatMoney locale value
+
+    match value, locale, currency with
+    | v, "nl-NL", "USD" when v < 0.0 -> ("$ " + formattedMoney).PadLeft(13) 
+    | v, "nl-NL", "EUR" when v < 0.0 -> ("€ " + formattedMoney).PadLeft(13) 
+    | v, "en-US", "USD" when v < 0.0 -> ("($" + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | v, "en-US", "EUR" when v < 0.0 -> ("(€" + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | v, "nl-NL", "USD" when v >= 0.0 -> ("$ " + formattedMoney + " ").PadLeft(13) 
+    | v, "nl-NL", "EUR" when v >= 0.0 -> ("€ " + formattedMoney + " ").PadLeft(13) 
+    | v, "en-US", "USD" when v >= 0.0 -> ("$" + formattedMoney + " ").PadLeft(13) 
+    | v, "en-US", "EUR" when v >= 0.0 -> ("€" + formattedMoney + " ").PadLeft(13) 
+    | _ -> ""
 
 let getValue x = float x.chg / 100.0
 
