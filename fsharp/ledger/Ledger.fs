@@ -27,8 +27,7 @@ let formatDescription (description:string) =
     else 
         description.[0..21] + "..."
 
-let formatMoney (locale:string) (value:float) =
-    value.ToString("#,#0.00", CultureInfo(locale))
+let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", CultureInfo(locale))
 
 let prettifyMoney locale currency value =
     if value < 0.0 then 
@@ -62,6 +61,9 @@ let prettifyMoney locale currency value =
 
 let getValue x = float x.chg / 100.0
 
+let formatLine locale currency entry =
+    "\n" + (formatDate entry.dat locale) + " | " + (formatDescription entry.des) + " | " + (prettifyMoney locale currency (getValue entry))
+
 let formatLedger currency locale entries =
     
     let headline = createHeadline locale
@@ -72,7 +74,7 @@ let formatLedger currency locale entries =
         | _ -> 
             entries
             |> List.sortBy (fun x -> x.dat, x.des, x.chg)
-            |> List.map(fun x -> "\n" + (formatDate x.dat locale) + " | " + (formatDescription x.des) + " | " + (prettifyMoney locale currency (getValue x)))
+            |> List.map(fun x -> formatLine locale currency x)
             |> List.reduce(( + ))
 
     headline + content
