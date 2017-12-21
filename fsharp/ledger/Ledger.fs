@@ -6,13 +6,20 @@ open System.Globalization
 type Entry = { dat: DateTime; des: string; chg: int }
 
 let mkEntry date description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
-        
+
+let createHeadline locale =
+    match locale with
+    | "en-US" -> "Date       | Description               | Change       "
+    | "nl-NL" -> "Datum      | Omschrijving              | Verandering  "
+    | _ -> ""
+
+
+
 let formatLedger currency locale entries =
     
     let mutable res = ""
 
-    if locale = "en-US" then res <- res + "Date       | Description               | Change       "
-    if locale = "nl-NL" then res <- res + "Datum      | Omschrijving              | Verandering  "
+    res <- createHeadline locale
         
     for x in List.sortBy (fun x -> x.dat, x.des, x.chg) entries do
 
