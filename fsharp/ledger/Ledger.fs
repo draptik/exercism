@@ -19,6 +19,14 @@ let formatDate (date:DateTime) locale =
     | "en-US" -> date.ToString("MM\/dd\/yyyy")
     | _ -> ""
 
+let formatDescription (description:string) =
+    if description.Length <= 25 then 
+        description.PadRight(25)
+    elif description.Length = 25 then 
+        description
+    else 
+        description.[0..21] + "..."
+
 let formatLedger currency locale entries =
     
     let mutable res = ""
@@ -33,12 +41,7 @@ let formatLedger currency locale entries =
                 
         res <- res + " | "
 
-        if x.des.Length <= 25 then 
-            res <- res + x.des.PadRight(25)
-        elif x.des.Length = 25 then 
-            res <- res + x.des
-        else 
-            res <- res + x.des.[0..21] + "..."
+        res <- res + formatDescription x.des
 
         res <- res + " | "
         let c = float x.chg / 100.0
