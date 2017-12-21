@@ -20,12 +20,10 @@ let formatDate (date:DateTime) locale =
     | _ -> ""
 
 let formatDescription (description:string) =
-    if description.Length <= 25 then 
-        description.PadRight(25)
-    elif description.Length = 25 then 
-        description
-    else 
-        description.[0..21] + "..."
+    match description with
+    | d when d.Length <= 25 -> description.PadRight(25)
+    | d when d.Length = 25 -> description
+    | _ -> description.[0..21] + "..."
 
 let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", CultureInfo(locale))
 
@@ -49,9 +47,6 @@ let formatLine locale currency entry =
     "\n" + (formatDate entry.dat locale) + " | " + (formatDescription entry.des) + " | " + (prettifyMoney locale currency (getValue entry))
 
 let formatLedger currency locale entries =
-    
-    let headline = createHeadline locale
-
     let content =
         match entries with
         | [] -> "" 
@@ -61,4 +56,4 @@ let formatLedger currency locale entries =
             |> List.map(fun x -> formatLine locale currency x)
             |> List.reduce(( + ))
 
-    headline + content
+    createHeadline locale + content
