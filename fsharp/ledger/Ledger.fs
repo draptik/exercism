@@ -30,15 +30,15 @@ let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", Cultur
 let prettifyMoney locale currency value =
     let formattedMoney = formatMoney locale value
 
-    match value, locale, currency with
-    | v, "nl-NL", "USD" when v < 0.0 -> ("$ " + formattedMoney).PadLeft(13) 
-    | v, "nl-NL", "EUR" when v < 0.0 -> ("€ " + formattedMoney).PadLeft(13) 
-    | v, "en-US", "USD" when v < 0.0 -> ("($" + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | v, "en-US", "EUR" when v < 0.0 -> ("(€" + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | v, "nl-NL", "USD" when v >= 0.0 -> ("$ " + formattedMoney + " ").PadLeft(13) 
-    | v, "nl-NL", "EUR" when v >= 0.0 -> ("€ " + formattedMoney + " ").PadLeft(13) 
-    | v, "en-US", "USD" when v >= 0.0 -> ("$" + formattedMoney + " ").PadLeft(13) 
-    | v, "en-US", "EUR" when v >= 0.0 -> ("€" + formattedMoney + " ").PadLeft(13) 
+    match value < 0.0, locale, currency with
+    | true, "nl-NL", "USD" -> ("$ " + formattedMoney).PadLeft(13) 
+    | true, "nl-NL", "EUR" -> ("€ " + formattedMoney).PadLeft(13) 
+    | true, "en-US", "USD" -> ("($" + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | true, "en-US", "EUR" -> ("(€" + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | false, "nl-NL", "USD" -> ("$ " + formattedMoney + " ").PadLeft(13) 
+    | false, "nl-NL", "EUR" -> ("€ " + formattedMoney + " ").PadLeft(13) 
+    | false, "en-US", "USD" -> ("$" + formattedMoney + " ").PadLeft(13) 
+    | false, "en-US", "EUR" -> ("€" + formattedMoney + " ").PadLeft(13) 
     | _ -> ""
 
 let getValue x = float x.chg / 100.0
