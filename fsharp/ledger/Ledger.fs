@@ -55,12 +55,15 @@ let prettifyMoney locale currency value =
     let formattedMoney = formatMoney locale value
     let symbol = getCurrencySymbol currency
 
-    match value < 0.0, locale with
-    | true, NL -> (symbol + " " + formattedMoney).PadLeft(13) 
-    | true, EN -> ("(" + symbol + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | false, NL -> (symbol + " " + formattedMoney + " ").PadLeft(13) 
-    | false, EN -> (symbol + formattedMoney + " ").PadLeft(13) 
-
+    let unpadded = 
+        match value < 0.0, locale with
+        | true, NL -> (symbol + " " + formattedMoney)
+        | true, EN -> ("(" + symbol + formattedMoney.Substring(1) + ")")
+        | false, NL -> (symbol + " " + formattedMoney + " ")
+        | false, EN -> (symbol + formattedMoney + " ")
+    
+    unpadded.PadLeft(13) 
+    
 let getValue x = float x.chg / 100.0
 
 let formatLine locale currency entry =
