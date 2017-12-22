@@ -75,6 +75,8 @@ let updateTiedTeams team1 team2 =
 // bla
 
 
+/// For some reason I think that I need a collection of all playing teams... ===============
+
 /// Input: "foo;bar;baz"
 /// Output: ["foo"; "bar"]
 let getTeams (line: string) =
@@ -92,7 +94,7 @@ let addOnlyNewTeams teams newTeams =
     |> List.distinct
 // addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
 
-
+/// =========================================================================================
 
 let tally input =
     let teams = input |> initializeTeams
