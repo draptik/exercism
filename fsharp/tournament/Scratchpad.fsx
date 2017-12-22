@@ -88,9 +88,11 @@ let getTeams (line: string) =
 
 
 let addOnlyNewTeams teams newTeams = 
-    List.distinct (List.append teams newTeams)
-// addToTeams ["a"; "b"] ["newTeam1"; "newTeam2"]
-// addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
+    List.append teams newTeams
+    |> List.distinct
+addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
+
+
 
 let tally input =
     let teams = input |> initializeTeams
