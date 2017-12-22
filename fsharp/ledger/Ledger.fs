@@ -5,6 +5,19 @@ open System.Globalization
 
 type Entry = { dat: DateTime; des: string; chg: int }
 
+type Currency = EUR | USD
+
+let getCurrencySymbol currency =
+    match currency with
+    | EUR -> "€"
+    | USD -> "$"
+
+let parseCurrency input =
+    match input with
+    | "EUR" -> EUR
+    | "USD" -> USD
+    | _ -> failwith "Invalid currency"
+
 let mkEntry date description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
 
 let createHeadline locale =
@@ -29,16 +42,13 @@ let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", Cultur
 
 let prettifyMoney locale currency value =
     let formattedMoney = formatMoney locale value
+    let symbol = getCurrencySymbol currency
 
-    match value < 0.0, locale, currency with
-    | true, "nl-NL", "USD" -> ("$ " + formattedMoney).PadLeft(13) 
-    | true, "nl-NL", "EUR" -> ("€ " + formattedMoney).PadLeft(13) 
-    | true, "en-US", "USD" -> ("($" + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | true, "en-US", "EUR" -> ("(€" + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | false, "nl-NL", "USD" -> ("$ " + formattedMoney + " ").PadLeft(13) 
-    | false, "nl-NL", "EUR" -> ("€ " + formattedMoney + " ").PadLeft(13) 
-    | false, "en-US", "USD" -> ("$" + formattedMoney + " ").PadLeft(13) 
-    | false, "en-US", "EUR" -> ("€" + formattedMoney + " ").PadLeft(13) 
+    match value < 0.0, locale with
+    | true, "nl-NL" -> (symbol + " " + formattedMoney).PadLeft(13) 
+    | true, "en-US" -> ("(" + symbol + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | false, "nl-NL" -> (symbol + " " + formattedMoney + " ").PadLeft(13) 
+    | false, "en-US" -> (symbol + formattedMoney + " ").PadLeft(13) 
     | _ -> ""
 
 let getValue x = float x.chg / 100.0
@@ -46,7 +56,9 @@ let getValue x = float x.chg / 100.0
 let formatLine locale currency entry =
     "\n" + (formatDate entry.dat locale) + " | " + (formatDescription entry.des) + " | " + (prettifyMoney locale currency (getValue entry))
 
-let formatLedger currency locale entries =
+let formatLedger currencyInput locale entries =
+    let currency = parseCurrency currencyInput
+
     let content =
         match entries with
         | [] -> "" 
