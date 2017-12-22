@@ -18,19 +18,30 @@ let parseCurrency input =
     | "USD" -> USD
     | _ -> failwith "Invalid currency"
 
+type Locale = EN | NL
+
+let parseLocale input =
+    match input with
+    | "en-US" -> EN
+    | "nl-NL" -> NL
+    | _ -> failwith "Invalid locale"
+
+let culture locale =
+    match locale with
+    | EN -> CultureInfo("en-US") 
+    | NL -> CultureInfo("nl-NL")
+
 let mkEntry date description change = { dat = DateTime.Parse(date, CultureInfo.InvariantCulture); des = description; chg = change }
 
 let createHeadline locale =
     match locale with
-    | "en-US" -> "Date       | Description               | Change       "
-    | "nl-NL" -> "Datum      | Omschrijving              | Verandering  "
-    | _ -> ""
+    | EN -> "Date       | Description               | Change       "
+    | NL -> "Datum      | Omschrijving              | Verandering  "
 
 let formatDate (date:DateTime) locale =
     match locale with
-    | "nl-NL" -> date.ToString("dd-MM-yyyy")
-    | "en-US" -> date.ToString("MM\/dd\/yyyy")
-    | _ -> ""
+    | NL -> date.ToString("dd-MM-yyyy")
+    | EN -> date.ToString("MM\/dd\/yyyy")
 
 let formatDescription (description:string) =
     match description with
@@ -38,26 +49,26 @@ let formatDescription (description:string) =
     | d when d.Length = 25 -> description
     | _ -> description.[0..21] + "..."
 
-let formatMoney (locale:string) (value:float) = value.ToString("#,#0.00", CultureInfo(locale))
+let formatMoney locale (value:float) = value.ToString("#,#0.00", culture locale)
 
 let prettifyMoney locale currency value =
     let formattedMoney = formatMoney locale value
     let symbol = getCurrencySymbol currency
 
     match value < 0.0, locale with
-    | true, "nl-NL" -> (symbol + " " + formattedMoney).PadLeft(13) 
-    | true, "en-US" -> ("(" + symbol + formattedMoney.Substring(1) + ")").PadLeft(13) 
-    | false, "nl-NL" -> (symbol + " " + formattedMoney + " ").PadLeft(13) 
-    | false, "en-US" -> (symbol + formattedMoney + " ").PadLeft(13) 
-    | _ -> ""
+    | true, NL -> (symbol + " " + formattedMoney).PadLeft(13) 
+    | true, EN -> ("(" + symbol + formattedMoney.Substring(1) + ")").PadLeft(13) 
+    | false, NL -> (symbol + " " + formattedMoney + " ").PadLeft(13) 
+    | false, EN -> (symbol + formattedMoney + " ").PadLeft(13) 
 
 let getValue x = float x.chg / 100.0
 
 let formatLine locale currency entry =
     "\n" + (formatDate entry.dat locale) + " | " + (formatDescription entry.des) + " | " + (prettifyMoney locale currency (getValue entry))
 
-let formatLedger currencyInput locale entries =
+let formatLedger currencyInput localeInput entries =
     let currency = parseCurrency currencyInput
+    let locale = parseLocale localeInput
 
     let content =
         match entries with
