@@ -1,3 +1,6 @@
 ﻿module Tournament
     
-let tally input = failwith "You need to implement this function."
+let tally input =
+    match input with
+    | [] -> ["Team                           | MP |  W |  D |  L |  P"]
+    | _ -> ["Team                           | MP |  W |  D |  L |  P"]
