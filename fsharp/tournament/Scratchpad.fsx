@@ -48,7 +48,6 @@ let updateLoosingTeam team = { team with MatchesLost = team.MatchesLost + 1 }
 let updateTiedTeam team = { team with MatchesDrawn = team.MatchesDrawn + 1 }
 
 let updateMatchesPlayed team = { team with MatchesPlayed = team.MatchesPlayed + 1 }
-    
 
 let updateTeamsWithWinner winner looser =
     updateWinnerTeam winner |> updateMatchesPlayed,
@@ -58,7 +57,8 @@ let updateTiedTeams team1 team2 =
     updateTiedTeam team1 |> updateMatchesPlayed,
     updateTiedTeam team2 |> updateMatchesPlayed
 
-// let parseGame stats1 stats2 input =
+
+// let parseGame team1 team2 input =
     
     // let gameStats = String.Split [|';'|] input
     // let firstTeam = gameStats.[0]
@@ -70,4 +70,19 @@ let updateTiedTeams team1 team2 =
     // | Loss -> 
     // | Draw ->     
 
-// parseGame initialTeamStats initialTeamStats sampleCompetition.[0]
+// let foo = "aaa;bbb;ccc"
+// let bla = foo.Split ';'
+// bla
+
+
+
+let getTeams (line: string) =
+    line.Split ';' 
+    |> Seq.toList
+    |> Seq.take 2
+    
+let x = getTeams "aa;bb;cc"
+
+
+let tally input =
+    let teams = input |> initializeTeams
