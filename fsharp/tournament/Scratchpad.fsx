@@ -52,10 +52,12 @@ let updateMatchesPlayed team = { team with MatchesPlayed = team.MatchesPlayed + 
 let updateTeamsWithWinner winner looser =
     updateWinnerTeam winner |> updateMatchesPlayed,
     updateLoosingTeam looser |> updateMatchesPlayed
+// updateTeamsWithWinner initialTeamStats initialTeamStats
 
 let updateTiedTeams team1 team2 =
     updateTiedTeam team1 |> updateMatchesPlayed,
     updateTiedTeam team2 |> updateMatchesPlayed
+// updateTiedTeams initialTeamStats initialTeamStats
 
 
 // let parseGame team1 team2 input =
