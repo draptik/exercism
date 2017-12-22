@@ -75,14 +75,22 @@ let updateTiedTeams team1 team2 =
 // bla
 
 
-
+/// Input: "foo;bar;baz"
+/// Output: ["foo"; "bar"]
 let getTeams (line: string) =
     line.Split ';' 
-    |> Seq.toList
     |> Seq.take 2
-    
-let x = getTeams "aa;bb;cc"
+// getTeams "foo;bar;baz"
 
+// let list1 = ["a"]
+// let list2 = ["b"]
+// List.append list1 list2
+
+
+let addOnlyNewTeams teams newTeams = 
+    List.distinct (List.append teams newTeams)
+// addToTeams ["a"; "b"] ["newTeam1"; "newTeam2"]
+// addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
 
 let tally input =
     let teams = input |> initializeTeams
