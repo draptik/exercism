@@ -6,6 +6,14 @@ open FsUnit.Xunit
 open Tournament
 
 [<Fact>]
+let ``Correctly displays the table for empty input`` () =
+    let actual = []
+    let expected =
+        ["Team                           | MP |  W |  D |  L |  P"]
+    
+    tally actual |> should equal expected
+
+[<Fact>]
 let ``Correctly displays the tournament table`` () =
     let actual = 
         ["Αllegoric Alaskians;Blithering Badgers;win";
