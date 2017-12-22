@@ -90,7 +90,7 @@ let getTeams (line: string) =
 let addOnlyNewTeams teams newTeams = 
     List.append teams newTeams
     |> List.distinct
-addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
+// addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
 
 
 
