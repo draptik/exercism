@@ -26,7 +26,7 @@ let ``Correctly displays the tournament table`` () =
     let expected = 
         ["Team                           | MP |  W |  D |  L |  P";
          "Devastating Donkeys            |  3 |  2 |  1 |  0 |  7";
-         "Αllegoric Alaskians            |  3 |  2 |  0 |  1 |  6";
+         "Allegoric Alaskians            |  3 |  2 |  0 |  1 |  6";
          "Blithering Badgers             |  3 |  1 |  0 |  2 |  3";
          "Courageous Californians        |  3 |  0 |  1 |  2 |  1"]
 
