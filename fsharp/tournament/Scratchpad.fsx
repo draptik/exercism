@@ -49,14 +49,14 @@ let updateTiedTeam team = { team with MatchesDrawn = team.MatchesDrawn + 1 }
 
 let updateMatchesPlayed team = { team with MatchesPlayed = team.MatchesPlayed + 1 }
 
+let updateTeamAfterPlayed f x = f x |> updateMatchesPlayed
+
 let updateTeamsWithWinner winner looser =
-    updateWinnerTeam winner |> updateMatchesPlayed,
-    updateLoosingTeam looser |> updateMatchesPlayed
+    updateTeamAfterPlayed updateWinnerTeam winner, updateTeamAfterPlayed updateLoosingTeam looser
 // updateTeamsWithWinner initialTeamStats initialTeamStats
 
-let updateTiedTeams team1 team2 =
-    updateTiedTeam team1 |> updateMatchesPlayed,
-    updateTiedTeam team2 |> updateMatchesPlayed
+let updateTiedTeams team1 team2 = 
+    updateTeamAfterPlayed updateTiedTeam team1, updateTeamAfterPlayed updateTiedTeam team2
 // updateTiedTeams initialTeamStats initialTeamStats
 
 
