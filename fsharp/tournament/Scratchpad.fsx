@@ -81,7 +81,7 @@ let updateTiedTeams team1 team2 =
 
 /// Input: "foo;bar;baz"
 /// Output: ["foo"; "bar"]
-let getTeams (line: string) =
+let getTeamsFromLine (line: string) =
     line.Split ';' 
     |> Seq.take 2
 // getTeams "foo;bar;baz"
@@ -92,9 +92,25 @@ let getTeams (line: string) =
 
 
 let addOnlyNewTeams teams newTeams = 
-    List.append teams newTeams
-    |> List.distinct
+    Seq.append teams newTeams
+    |> Seq.distinct
 // addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
+
+"Αllegoric Alaskians;Blithering Badgers;win"
+|> getTeamsFromLine
+|> addOnlyNewTeams []
+
+let getTeams previousTeams = getTeamsFromLine >> addOnlyNewTeams previousTeams
+
+"Αllegoric Alaskians;Blithering Badgers;win"
+|> getTeams []
+
+// sampleCompetition
+["a1;b1;c"; "a1;b2;c"; "a2;b2;c"]
+|> Seq.map(getTeamsFromLine)
+|> Seq.append []
+|> Seq.concat
+|> Seq.distinct
 
 /// =========================================================================================
 
