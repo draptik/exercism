@@ -106,7 +106,7 @@ let getTeams previousTeams = getTeamsFromLine >> addOnlyNewTeams previousTeams
 |> getTeams []
 
 // sampleCompetition
-(Seq.collect getTeamsFromLine ["a1;b1;c"; "a1;b2;c"; "a2;b2;c"])
+(Seq.collect getTeamsFromLine sampleCompetition)
 |> Seq.distinct
 
 /// =========================================================================================
