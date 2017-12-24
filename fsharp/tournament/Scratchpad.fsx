@@ -72,11 +72,6 @@ let updateTiedTeams team1 team2 =
     // | Loss -> 
     // | Draw ->     
 
-// let foo = "aaa;bbb;ccc"
-// let bla = foo.Split ';'
-// bla
-
-
 /// For some reason I think that I need a collection of all playing teams... ===============
 
 /// Input: "foo;bar;baz"
@@ -84,32 +79,13 @@ let updateTiedTeams team1 team2 =
 let getTeamsFromLine (line: string) =
     line.Split ';' 
     |> Seq.take 2
-// getTeams "foo;bar;baz"
 
-// let list1 = ["a"]
-// let list2 = ["b"]
-// List.append list1 list2
-
-
-let addOnlyNewTeams teams newTeams = 
-    Seq.append teams newTeams
+let getAllTeams input =
+    (Seq.collect getTeamsFromLine sampleCompetition)
     |> Seq.distinct
-// addOnlyNewTeams ["a"; "b"] ["a"; "x"] = ["a"; "b"; "x"]
-
-"Αllegoric Alaskians;Blithering Badgers;win"
-|> getTeamsFromLine
-|> addOnlyNewTeams []
-
-let getTeams previousTeams = getTeamsFromLine >> addOnlyNewTeams previousTeams
-
-"Αllegoric Alaskians;Blithering Badgers;win"
-|> getTeams []
-
-// sampleCompetition
-(Seq.collect getTeamsFromLine sampleCompetition)
-|> Seq.distinct
+// getAllTeams sampleCompetition
 
 /// =========================================================================================
 
 let tally input =
-    let teams = input |> initializeTeams
+    let teams = getAllTeams input |> initializeTeams
