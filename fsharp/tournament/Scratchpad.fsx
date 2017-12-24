@@ -25,9 +25,9 @@ let initialTeamStats =
 
 type GameOutcome = Win | Loss | Draw
 
-// type Team =
-//     {   Name: string
-//         Stats: TeamStats }    
+type Team =
+    {   Name: string
+        Stats: TeamStats }    
 
 let parseOutcome outcome =
     match outcome with
@@ -80,12 +80,22 @@ let getTeamsFromLine (line: string) =
     line.Split ';' 
     |> Seq.take 2
 
-let getAllTeams input =
+let getAllTeamNames input =
     (Seq.collect getTeamsFromLine sampleCompetition)
     |> Seq.distinct
 // getAllTeams sampleCompetition
 
+let initializeTeam team =
+    {   Name = team
+        Stats = initialTeamStats }
+
+let initializeAllTeams teamNames =
+    teamNames |> Seq.map initializeTeam
+
 /// =========================================================================================
 
 let tally input =
-    let teams = getAllTeams input |> initializeTeams
+    
+    let teams = 
+        getAllTeamNames input 
+        |> initializeAllTeams
