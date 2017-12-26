@@ -1,4 +1,5 @@
 open System
+open System.Xml.Xsl.Runtime
 let sampleCompetition = 
         ["Αllegoric Alaskians;Blithering Badgers;win";
          "Devastating Donkeys;Courageous Californians;draw";
@@ -7,16 +8,18 @@ let sampleCompetition =
          "Blithering Badgers;Devastating Donkeys;loss";
          "Αllegoric Alaskians;Courageous Californians;win"]
 
-type TeamStats = 
+type Team = 
     {   
+        Name: string
         MatchesPlayed: int
         MatchesWon: int
         MatchesLost: int
         MatchesDrawn: int
         Points: int }
 
-let initialTeamStats =
+let emptyTeamTemplate =
     {   
+        Name = ""
         MatchesPlayed = 0
         MatchesWon = 0
         MatchesLost = 0
@@ -24,10 +27,6 @@ let initialTeamStats =
         Points = 0 }
 
 type GameOutcome = Win | Loss | Draw
-
-type Team =
-    {   Name: string
-        Stats: TeamStats }    
 
 let parseOutcome outcome =
     match outcome with
@@ -59,7 +58,7 @@ let updateTiedTeams team1 team2 =
     updateTeamAfterPlayed updateTiedTeam team1, updateTeamAfterPlayed updateTiedTeam team2
 // updateTiedTeams initialTeamStats initialTeamStats
 
-
+// let parseGame line competition  =
 // let parseGame team1 team2 input =
     
     // let gameStats = String.Split [|';'|] input
@@ -76,26 +75,26 @@ let updateTiedTeams team1 team2 =
 
 /// Input: "foo;bar;baz"
 /// Output: ["foo"; "bar"]
-let getTeamsFromLine (line: string) =
+let getTeamNamesFromLine (line: string) =
     line.Split ';' 
     |> Seq.take 2
 
 let getAllTeamNames input =
-    (Seq.collect getTeamsFromLine sampleCompetition)
+    (Seq.collect getTeamNamesFromLine input)
     |> Seq.distinct
 // getAllTeams sampleCompetition
 
-let initializeTeam team =
-    {   Name = team
-        Stats = initialTeamStats }
+let teamNaming teamName = { emptyTeamTemplate with Name = teamName }
 
-let initializeAllTeams teamNames =
-    teamNames |> Seq.map initializeTeam
+let initializeAllTeamsByName teamNames = teamNames |> Seq.map teamNaming
 
-/// =========================================================================================
+// /// =========================================================================================
 
-let tally input =
+
+// Input: (current) game result; previous total state ("competition")
+// Output: total state ("competition")
+
+// Input: game result of current line
+// Output: transformed result
+let foo line result =
     
-    let teams = 
-        getAllTeamNames input 
-        |> initializeAllTeams
