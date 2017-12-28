@@ -82,11 +82,13 @@ let getTeamNamesFromLine (line: string) =
 let getAllTeamNames input =
     (Seq.collect getTeamNamesFromLine input)
     |> Seq.distinct
-// getAllTeams sampleCompetition
+// getAllTeamNames sampleCompetition
 
 let teamNaming teamName = { emptyTeamTemplate with Name = teamName }
 
 let initializeAllTeamsByName teamNames = teamNames |> Seq.map teamNaming
+// getAllTeamNames sampleCompetition
+// |> initializeAllTeamsByName
 
 // /// =========================================================================================
 
