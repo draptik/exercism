@@ -1,5 +1,4 @@
 open System
-open System.Xml.Xsl.Runtime
 let sampleCompetition = 
         ["Αllegoric Alaskians;Blithering Badgers;win";
          "Devastating Donkeys;Courageous Californians;draw";
@@ -87,8 +86,8 @@ let getAllTeamNames input =
 let teamNaming teamName = { emptyTeamTemplate with Name = teamName }
 
 let initializeAllTeamsByName teamNames = teamNames |> Seq.map teamNaming
-// getAllTeamNames sampleCompetition
-// |> initializeAllTeamsByName
+//getAllTeamNames sampleCompetition
+//|> initializeAllTeamsByName
 
 // /// =========================================================================================
 
@@ -98,5 +97,5 @@ let initializeAllTeamsByName teamNames = teamNames |> Seq.map teamNaming
 
 // Input: game result of current line
 // Output: transformed result
-let foo line result =
+//let foo line result =
     
