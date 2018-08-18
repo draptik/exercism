@@ -15,10 +15,9 @@ let convertEntries xs =
     xs
     |> Seq.collect convertOldEntry
     |> Seq.sortBy (fun (c, _) -> c)
-    |> List.ofSeq
 
 let transform (scoresWithLetters: Map<int, char list>): Map<char, int> =
     scoresWithLetters
     |> Map.toSeq
     |> convertEntries
-    |> Map.ofList    
+    |> Map.ofSeq
