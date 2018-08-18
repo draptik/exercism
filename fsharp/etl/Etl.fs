@@ -1,9 +1,10 @@
 ﻿module Etl
 
 let convertListOfCharsToLowerCase (xs: char list) =
-    xs
-    |> Seq.map (fun x -> (string x).ToLower())
-    |> Seq.map (fun x -> (char x))
+    let toLower c = (string c).ToLower()
+    let toChar s = (char s)
+
+    xs |> List.map (toLower >> toChar)
 
 let convertOldEntry oldEntry =
     let score, chars = oldEntry

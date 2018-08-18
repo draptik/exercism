@@ -31,9 +31,11 @@ let foo1 tuple =
     |> Seq.unfold 
 
 let convertListOfCharsToLowerCase (xs: char list) =
+    let toLower c = (string c).ToLower()
+    let toChar s = (char s)
+
     xs
-    |> List.map (fun x -> (string x).ToLower())
-    |> List.map (fun x -> (char x))
+    |> List.map (toLower >> toChar)
 
 ['A'; 'B'; 'C'; 'd'] |> convertListOfCharsToLowerCase
 
