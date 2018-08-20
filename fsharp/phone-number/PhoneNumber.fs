@@ -32,9 +32,7 @@ let validateExchangeCode (s:string option) =
 
 let clean input =
     input
-    |> stripNonNumbers
-    |> stripDots
-    |> stripLeadingUSCountryCode
+    |> (stripNonNumbers >> stripDots >> stripLeadingUSCountryCode)
     |> validateLength
     |> validateAreaCode
     |> validateExchangeCode
