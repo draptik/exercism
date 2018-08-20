@@ -19,4 +19,4 @@ let convert (number: int): string =
     |> pling
     |> plang
     |> plong
-    |> extract   
+    |> extract
