@@ -16,9 +16,25 @@ let validateLength (s:string) =
     if s.Length = 10 then Some s
     else None
 
+let validatePosition pos (s:string) =
+    if s.[pos] = '0' || s.[pos] = '1' then None
+    else Some s
+
+let validateAreaCode (s:string option) =
+    match s.IsSome with
+    | true -> validatePosition 0 s.Value
+    | false -> None
+
+let validateExchangeCode (s:string option) =
+    match s.IsSome with
+    | true -> validatePosition 3 s.Value
+    | false -> None
+
 let clean input =
     input
     |> stripNonNumbers
     |> stripDots
     |> stripLeadingUSCountryCode
     |> validateLength
+    |> validateAreaCode
+    |> validateExchangeCode
