@@ -4,6 +4,7 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="PhoneNumberDomain.fs" />
     <Compile Include="PhoneNumber.fs" />
     <Compile Include="PhoneNumberTest.fs" />
   </ItemGroup>

@@ -12,3 +12,13 @@ let validateLength (s:string) =
 let stripCountryCode (s:string) =
     if s.Length = 11 then s.[1..10]
     else s
+
+
+type Adder = int -> int
+type AdderGenerator = int -> Adder
+
+let a:AdderGenerator = fun x -> (fun y -> x + y)
+
+
+// let b:AdderGenerator = fun (x:float) -> (fun y -> x + y)
+// let c                = fun (x:float) -> (fun y -> x + y)
