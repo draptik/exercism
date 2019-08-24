@@ -9,19 +9,9 @@ let square (n: int): Result<uint64,string> =
     else Ok (uint64 (float (2) ** (float (n-1))))
     
 let total: Result<uint64,string> =
-
-    let extractOnlyOks (results: Result<uint64, string> seq) =
-        results
-        |> Seq.map (
-                     fun result ->
-                         match result with
-                         | Ok num -> num
-                         | _ -> 0UL)
-                
-    let sumOfValidSquares =
-        validSquares
-        |> Seq.map square
-        |> extractOnlyOks
-        |> Seq.sum
-
-    Ok sumOfValidSquares
+    validSquares
+    |> Seq.map square
+    |> Seq.sumBy (function
+        | Ok x -> x
+        | _ -> 0UL)
+    |> Ok
