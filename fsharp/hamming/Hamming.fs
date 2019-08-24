@@ -6,7 +6,8 @@ let distance (strand1: string) (strand2: string): int option =
     else
         (strand1, strand2)
         ||> Seq.zip
-        |> Seq.map (fun (a, b) -> if a = b then 0 else 1)
-        |> Seq.sum
+        |> Seq.map (fun (a, b) -> a <> b)
+        |> Seq.filter id
+        |> Seq.length
         |> Some
         
