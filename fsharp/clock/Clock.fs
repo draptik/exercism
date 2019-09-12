@@ -13,7 +13,11 @@ let create hours minutes =
     
     let hourFromMinuteRollover m = if m >= 60 then m / 60 else 0
     
-    let handleNegativeHours hrs = if hrs < 0 then 24 - (Math.Abs(hrs) % 24) else hrs
+    let handleNegativeHours hrs =
+        if hrs < 0 then
+            24 - (Math.Abs(hrs) % 24)
+        else
+            hrs
     
     let h = ((handleNegativeHours hours) + (hourFromMinuteRollover minutes)) % 24
     
