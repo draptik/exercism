@@ -42,7 +42,7 @@ let ``Minutes roll over`` () =
     let clock = create 0 160
     display clock |> should equal "02:40"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Minutes roll over continuously`` () =
     let clock = create 0 1723
     display clock |> should equal "04:43"

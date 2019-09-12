@@ -10,8 +10,9 @@ let print clock =
 
 let create hours minutes =
     let minuteRollover = if minutes >= 60 then minutes / 60 else 0
+    let h = (hours + minuteRollover) % 24
     {
-        hour = hours % 24 + minuteRollover
+        hour = h
         minute = minutes % 60
     }
 
