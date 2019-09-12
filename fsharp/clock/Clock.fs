@@ -27,7 +27,7 @@ let hourFromMinuteRollover m =
     else
         0
         
-let hourFromNegativeMinuteRollover m =
+let subtractableHourFromNegativeMinuteRollover m =
     if m < 0 then
         1
     else
@@ -39,7 +39,7 @@ let create hours minutes =
         (
             (handleNegativeHours hours)
             + (hourFromMinuteRollover minutes)
-            - (hourFromNegativeMinuteRollover minutes)
+            - (subtractableHourFromNegativeMinuteRollover minutes)
         ) % 24
     
     {
