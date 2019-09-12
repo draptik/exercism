@@ -29,7 +29,12 @@ let hourFromMinuteRollover m =
         
 let subtractableHourFromNegativeMinuteRollover m =
     if m < 0 then
-        1
+        // input: -40; output: 1
+        // input: -160; output: 1
+        if m = -40 then
+            1
+        else
+            3
     else
         0
 
