@@ -12,32 +12,32 @@ let ``On the hour`` () =
     let clock = create 8 0
     display clock |> should equal "08:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Past the hour`` () =
     let clock = create 11 9
     display clock |> should equal "11:09"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Midnight is zero hours`` () =
     let clock = create 24 0
     display clock |> should equal "00:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Hour rolls over`` () =
     let clock = create 25 0
     display clock |> should equal "01:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Hour rolls over continuously`` () =
     let clock = create 100 0
     display clock |> should equal "04:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Sixty minutes is next hour`` () =
     let clock = create 1 60
     display clock |> should equal "02:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Minutes roll over`` () =
     let clock = create 0 160
     display clock |> should equal "02:40"
