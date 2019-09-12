@@ -62,7 +62,7 @@ let ``Hour and minutes roll over to exactly midnight`` () =
     let clock = create 72 8640
     display clock |> should equal "00:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Negative hour`` () =
     let clock = create -1 15
     display clock |> should equal "23:15"
