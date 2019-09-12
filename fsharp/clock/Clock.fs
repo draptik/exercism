@@ -1,5 +1,6 @@
 module Clock
 open System
+open System
 
 type clock = {
     hour: int
@@ -17,7 +18,7 @@ let handleNegativeHours hrs =
 
 let handleNegativeMinutes m =
     if m < 0 then
-        m
+        60 - (Math.Abs(m) % 60)
     else
         m
 
