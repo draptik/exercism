@@ -47,17 +47,17 @@ let ``Minutes roll over continuously`` () =
     let clock = create 0 1723
     display clock |> should equal "04:43"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Hour and minutes roll over`` () =
     let clock = create 25 160
     display clock |> should equal "03:40"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Hour and minutes roll over continuously`` () =
     let clock = create 201 3001
     display clock |> should equal "11:01"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Hour and minutes roll over to exactly midnight`` () =
     let clock = create 72 8640
     display clock |> should equal "00:00"

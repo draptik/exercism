@@ -9,8 +9,8 @@ let print clock =
     sprintf "%02i:%02i" clock.hour clock.minute
 
 let create hours minutes =
-    let minuteRollover = if minutes >= 60 then minutes / 60 else 0
-    let h = (hours + minuteRollover) % 24
+    let hourFromMinuteRollover = if minutes >= 60 then minutes / 60 else 0
+    let h = (hours + hourFromMinuteRollover) % 24
     {
         hour = h
         minute = minutes % 60
