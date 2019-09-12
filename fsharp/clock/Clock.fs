@@ -1,6 +1,5 @@
 module Clock
 open System
-open System
 
 type clock = {
     hour: int
@@ -22,11 +21,26 @@ let handleNegativeMinutes m =
     else
         m
 
-let hourFromMinuteRollover m = if m >= 60 then m / 60 else 0
+let hourFromMinuteRollover m =
+    if m >= 60 then
+        m / 60
+    else
+        0
+        
+let hourFromNegativeMinuteRollover m =
+    if m < 0 then
+        1
+    else
+        0
 
 let create hours minutes =
             
-    let h = ((handleNegativeHours hours) + (hourFromMinuteRollover minutes)) % 24
+    let h =
+        (
+            (handleNegativeHours hours)
+            + (hourFromMinuteRollover minutes)
+            - (hourFromNegativeMinuteRollover minutes)
+        ) % 24
     
     {
         hour = h
