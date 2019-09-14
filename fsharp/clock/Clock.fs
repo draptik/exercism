@@ -12,7 +12,7 @@ let print clock =
 let convertToTotalMinutes hours minutes =
     (hours * 60) + minutes
     
-let convertToAnalogMinutes totalMinutes =
+let convertToAnalogClock totalMinutes =
     
     let prepareNegativeHours m =
         if m < 0 then
@@ -30,11 +30,11 @@ let convertToAnalogMinutes totalMinutes =
 
 let create hours minutes =
     convertToTotalMinutes hours minutes
-    |> convertToAnalogMinutes
+    |> convertToAnalogClock
 
 let add minutes clock =
     let previousTotalMinutes = (clock.hour * 60) + clock.minute
-    convertToAnalogMinutes (previousTotalMinutes + minutes)
+    convertToAnalogClock (previousTotalMinutes + minutes)
 
 let subtract minutes clock = failwith "You need to implement this function."
 
