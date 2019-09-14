@@ -31,16 +31,6 @@ let convertToAnalogMinutes totalMinutes =
 let create hours minutes =
     convertToTotalMinutes hours minutes
     |> convertToAnalogMinutes
-//    let h =
-//        (
-//            (handleNegativeHours hours)
-//            + (hourFromMinuteRollover minutes)
-//        ) % 24
-//    
-//    {
-//        hour = h
-//        minute = (handleNegativeMinutes minutes) % 60
-//    }
 
 let add minutes clock = failwith "You need to implement this function."
 
