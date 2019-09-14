@@ -92,17 +92,17 @@ let ``Negative minutes roll over continuously`` () =
     let clock = create 1 -4820
     display clock |> should equal "16:40"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Negative sixty minutes is previous hour`` () =
     let clock = create 2 -60
     display clock |> should equal "01:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Negative hour and minutes both roll over`` () =
     let clock = create -25 -160
     display clock |> should equal "20:20"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Negative hour and minutes both roll over continuously`` () =
     let clock = create -121 -5810
     display clock |> should equal "22:10"
