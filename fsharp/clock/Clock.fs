@@ -9,48 +9,38 @@ type clock = {
 let print clock =
     sprintf "%02i:%02i" clock.hour clock.minute
 
-let handleNegativeHours hrs =
-    if hrs < 0 then
-        24 - (Math.Abs(hrs) % 24)
-    else
-        hrs
-
-let handleNegativeMinutes m =
-    if m < 0 then
-        60 - (Math.Abs(m) % 60)
-    else
-        m
-
-let hourFromMinuteRollover m =
-    if m >= 60 then
-        m / 60
-    else
-        0
-        
-let subtractableHourFromNegativeMinuteRollover m =
-    if m < 0 then
-        // input: -40; output: 1
-        // input: -160; output: 1
-        if m = -40 then
-            1
-        else
-            3
-    else
-        0
-
-let create hours minutes =
-            
-    let h =
-        (
-            (handleNegativeHours hours)
-            + (hourFromMinuteRollover minutes)
-            - (subtractableHourFromNegativeMinuteRollover minutes)
-        ) % 24
+let convertToTotalMinutes hours minutes =
+    (hours * 60) + minutes
+    
+let convertToAnalogMinutes totalMinutes =
+    
+    let prepareNegativeHours m =
+        if m < 0 then
+            1440 - (Math.Abs(m) % 1440)
+        else m
+    let prepareNegativeMinutes m =
+        if m < 0 then
+            60 - (Math.Abs(m) % 60)
+        else m
     
     {
-        hour = h
-        minute = (handleNegativeMinutes minutes) % 60
+        hour = (prepareNegativeHours totalMinutes) / 60 % 24;
+        minute = (prepareNegativeMinutes totalMinutes) % 60
     }
+
+let create hours minutes =
+    convertToTotalMinutes hours minutes
+    |> convertToAnalogMinutes
+//    let h =
+//        (
+//            (handleNegativeHours hours)
+//            + (hourFromMinuteRollover minutes)
+//        ) % 24
+//    
+//    {
+//        hour = h
+//        minute = (handleNegativeMinutes minutes) % 60
+//    }
 
 let add minutes clock = failwith "You need to implement this function."
 
