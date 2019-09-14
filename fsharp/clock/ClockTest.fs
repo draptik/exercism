@@ -147,42 +147,42 @@ let ``Add more than two days`` () =
     let clock = create 1 1
     add 3500 clock |> display |> should equal "11:21"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract minutes`` () =
     let clock = create 10 3
     subtract 3 clock |> display |> should equal "10:00"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract to previous hour`` () =
     let clock = create 10 3
     subtract 30 clock |> display |> should equal "09:33"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract more than an hour`` () =
     let clock = create 10 3
     subtract 70 clock |> display |> should equal "08:53"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract across midnight`` () =
     let clock = create 0 3
     subtract 4 clock |> display |> should equal "23:59"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract more than two hours`` () =
     let clock = create 0 0
     subtract 160 clock |> display |> should equal "21:20"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract more than two hours with borrow`` () =
     let clock = create 6 15
     subtract 160 clock |> display |> should equal "03:35"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract more than one day (1500 min = 25 hrs)`` () =
     let clock = create 5 32
     subtract 1500 clock |> display |> should equal "04:32"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Subtract more than two days`` () =
     let clock = create 2 20
     subtract 3000 clock |> display |> should equal "00:20"

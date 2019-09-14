@@ -36,7 +36,9 @@ let add minutes clock =
     let previousTotalMinutes = (clock.hour * 60) + clock.minute
     convertToAnalogClock (previousTotalMinutes + minutes)
 
-let subtract minutes clock = failwith "You need to implement this function."
+let subtract minutes clock =
+    let previousTotalMinutes = (clock.hour * 60) + clock.minute
+    convertToAnalogClock (previousTotalMinutes - minutes)
 
 let display clock =
     print clock
