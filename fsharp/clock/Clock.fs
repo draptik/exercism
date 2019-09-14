@@ -11,11 +11,13 @@ let print clock =
 
 let convertToTotalMinutes hours minutes =
     (hours * 60) + minutes
-    
 
 let normalizeHour (m:int) = Math.Abs(m) % 1440
 
 let normalizeMinute (m:int) = Math.Abs(m) % 60
+
+let toAnalogHour m = m / 60 % 24
+let toAnalogMinute m = m % 60
 
 let convertToAnalogClock totalMinutes =
 
@@ -24,15 +26,14 @@ let convertToAnalogClock totalMinutes =
             1440 - normalizeHour m
         else normalizeHour m
     
-    
     let prepareNegativeMinutes m =
         if m < 0 then
             60 - normalizeMinute m
         else normalizeMinute m
     
     {
-        hour = (prepareNegativeHours totalMinutes) / 60 % 24;
-        minute = (prepareNegativeMinutes totalMinutes) % 60
+        hour = toAnalogHour (prepareNegativeHours totalMinutes)
+        minute = toAnalogMinute (prepareNegativeMinutes totalMinutes)
     }
 
 let create hours minutes =
