@@ -32,7 +32,9 @@ let create hours minutes =
     convertToTotalMinutes hours minutes
     |> convertToAnalogMinutes
 
-let add minutes clock = failwith "You need to implement this function."
+let add minutes clock =
+    let previousTotalMinutes = (clock.hour * 60) + clock.minute
+    convertToAnalogMinutes (previousTotalMinutes + minutes)
 
 let subtract minutes clock = failwith "You need to implement this function."
 

@@ -107,42 +107,42 @@ let ``Negative hour and minutes both roll over continuously`` () =
     let clock = create -121 -5810
     display clock |> should equal "22:10"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add minutes`` () =
     let clock = create 10 0
     add 3 clock |> display |> should equal "10:03"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add no minutes`` () =
     let clock = create 6 41
     add 0 clock |> display |> should equal "06:41"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add to next hour`` () =
     let clock = create 0 45
     add 40 clock |> display |> should equal "01:25"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add more than one hour`` () =
     let clock = create 10 0
     add 61 clock |> display |> should equal "11:01"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add more than two hours with carry`` () =
     let clock = create 0 45
     add 160 clock |> display |> should equal "03:25"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add across midnight`` () =
     let clock = create 23 59
     add 2 clock |> display |> should equal "00:01"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add more than one day (1500 min = 25 hrs)`` () =
     let clock = create 5 32
     add 1500 clock |> display |> should equal "06:32"
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Add more than two days`` () =
     let clock = create 1 1
     add 3500 clock |> display |> should equal "11:21"
