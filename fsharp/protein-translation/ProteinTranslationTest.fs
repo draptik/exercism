@@ -75,7 +75,7 @@ let ``STOP codon RNA sequence 2`` () =
 let ``STOP codon RNA sequence 3`` () =
     proteins "UGA" |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translate RNA strand into correct protein list`` () =
     proteins "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 

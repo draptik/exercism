@@ -4,6 +4,16 @@ open System
 
 type DomainError =
     | InvalidRna of string
+
+type Protein =
+    | STOP
+    | Methionine
+    | Phenylalanine
+    | Leucine
+    | Serine
+    | Tyrosine
+    | Cysteine
+    | Tryptophan
     
 module Rna =
     
@@ -33,27 +43,44 @@ module Rna =
 let split (s:string) =
     s
     |> Seq.chunkBySize 3
+    |> Seq.map (fun ca -> String.Concat(ca))
     
 let mapToProtein rna =
     match Rna.value rna with
-    | "AUG" ->  "Methionine"
-    | "UUU" | "UUC" ->  "Phenylalanine"
-    | "UUA" | "UUG" ->  "Leucine"
-    | "UCA" | "UCC" | "UCG" | "UCU" ->  "Serine"
-    | "UAU" | "UAC" ->  "Tyrosine"
-    | "UGU" | "UGC" ->  "Cysteine"
-    | "UGG" ->  "Tryptophan"
-    | "UAA" | "UAG" | "UGA" -> "STOP"
-    | _ -> "no protein found for given RNA sequence"
+    | "AUG" -> Some Methionine
+    | "UUU" | "UUC" -> Some Phenylalanine
+    | "UUA" | "UUG" -> Some Leucine
+    | "UCA" | "UCC" | "UCG" | "UCU" -> Some Serine
+    | "UAU" | "UAC" -> Some Tyrosine
+    | "UGU" | "UGC" -> Some Cysteine
+    | "UGG" -> Some Tryptophan
+    | "UAA" | "UAG" | "UGA" -> Some STOP
+    | _ -> None
 
 let proteins rna =
-    let result =
-        match Rna.create rna with
-        | Ok x -> x |> mapToProtein
-        | Error _ -> "ups"
     
-    if result = "STOP" then
-        List.empty
-    else
-        List.init 1 (fun _ -> result)
+    let optProteins =
+        split rna
+        |> Seq.map Rna.create
+        |> Seq.map (fun r ->
+                    match r with
+                    | Ok x -> x |> mapToProtein
+                    | Error _ -> None)
     
+    optProteins // seq Protein option
+    |> Seq.map (fun optProtein ->
+        match optProtein with
+        | Some p -> sprintf "%A" p
+        | None -> "")
+    |> Seq.toList
+    
+//    let result =
+//        match Rna.create rna with
+//        | Ok x -> x |> mapToProtein
+//        | Error _ -> "ups"
+//    
+//    if result = "STOP" then
+//        List.empty
+//    else
+//        List.init 1 (fun _ -> result)
+//    
