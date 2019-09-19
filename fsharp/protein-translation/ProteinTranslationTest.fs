@@ -79,23 +79,23 @@ let ``STOP codon RNA sequence 3`` () =
 let ``Translate RNA strand into correct protein list`` () =
     proteins "AUGUUUUGG" |> should equal ["Methionine"; "Phenylalanine"; "Tryptophan"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translation stops if STOP codon at beginning of sequence`` () =
     proteins "UAGUGG" |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translation stops if STOP codon at end of two-codon sequence`` () =
     proteins "UGGUAG" |> should equal ["Tryptophan"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translation stops if STOP codon at end of three-codon sequence`` () =
     proteins "AUGUUUUAA" |> should equal ["Methionine"; "Phenylalanine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translation stops if STOP codon in middle of three-codon sequence`` () =
     proteins "UGGUAGUGG" |> should equal ["Tryptophan"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Translation stops if STOP codon in middle of six-codon sequence`` () =
     proteins "UGGUGUUAUUAAUGGUUU" |> should equal ["Tryptophan"; "Cysteine"; "Tyrosine"]
 
