@@ -15,51 +15,51 @@ let ``Methionine RNA sequence`` () =
 let ``Phenylalanine RNA sequence 1`` () =
     proteins "UUU" |> should equal ["Phenylalanine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Phenylalanine RNA sequence 2`` () =
     proteins "UUC" |> should equal ["Phenylalanine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Leucine RNA sequence 1`` () =
     proteins "UUA" |> should equal ["Leucine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Leucine RNA sequence 2`` () =
     proteins "UUG" |> should equal ["Leucine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Serine RNA sequence 1`` () =
     proteins "UCU" |> should equal ["Serine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Serine RNA sequence 2`` () =
     proteins "UCC" |> should equal ["Serine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Serine RNA sequence 3`` () =
     proteins "UCA" |> should equal ["Serine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Serine RNA sequence 4`` () =
     proteins "UCG" |> should equal ["Serine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Tyrosine RNA sequence 1`` () =
     proteins "UAU" |> should equal ["Tyrosine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Tyrosine RNA sequence 2`` () =
     proteins "UAC" |> should equal ["Tyrosine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Cysteine RNA sequence 1`` () =
     proteins "UGU" |> should equal ["Cysteine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Cysteine RNA sequence 2`` () =
     proteins "UGC" |> should equal ["Cysteine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Tryptophan RNA sequence`` () =
     proteins "UGG" |> should equal ["Tryptophan"]
 

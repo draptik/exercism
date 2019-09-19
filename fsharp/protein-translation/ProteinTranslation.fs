@@ -37,8 +37,13 @@ let split (s:string) =
 let mapToProtein rna =
     match Rna.value rna with
     | "AUG" ->  "Methionine"
-    | "UUU" ->  "Phenylalanine"
-    | _ -> "invalid"
+    | "UUU" | "UUC" ->  "Phenylalanine"
+    | "UUA" | "UUG" ->  "Leucine"
+    | "UCA" | "UCC" | "UCG" | "UCU" ->  "Serine"
+    | "UAU" | "UAC" ->  "Tyrosine"
+    | "UGU" | "UGC" ->  "Cysteine"
+    | "UGG" ->  "Tryptophan"
+    | _ -> "no protein found for given RNA sequence"
 
 let proteins rna =
     let result =
