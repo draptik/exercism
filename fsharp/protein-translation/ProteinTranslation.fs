@@ -40,13 +40,15 @@ module Rna =
 
     let value (ValidRna rna) = rna
 
-let split (s:string) =
-    s
-    |> Seq.chunkBySize 3
-    |> Seq.map (fun ca -> String.Concat(ca))
+let split (rawInput:string) =
+    let codonSize = 3
     
-let mapToProtein rna =
-    match Rna.value rna with
+    rawInput
+    |> Seq.chunkBySize codonSize
+    |> Seq.map (fun charArray -> String.Concat(charArray))
+    
+let mapToProtein validRna =
+    match Rna.value validRna with
     | "AUG" -> Some Methionine
     | "UUU" | "UUC" -> Some Phenylalanine
     | "UUA" | "UUG" -> Some Leucine
@@ -57,23 +59,29 @@ let mapToProtein rna =
     | "UAA" | "UAG" | "UGA" -> Some STOP
     | _ -> None
 
+let createOptionalProtein resultRna =
+    match resultRna with
+    | Ok rna -> rna |> mapToProtein
+    | Error _ -> None
+
+let isNotStopCodon optionalProtein =
+    match optionalProtein with
+    | Some protein -> protein <> STOP
+    | _ -> true
+
+let optionalProteinToString optionalProtein =
+    match optionalProtein with
+    | Some protein -> sprintf "%A" protein
+    | None -> ""
+        
 let proteins rna =
     
     let optProteins =
         split rna
         |> Seq.map Rna.create
-        |> Seq.map (fun r ->
-                    match r with
-                    | Ok x -> x |> mapToProtein
-                    | Error _ -> None)
+        |> Seq.map createOptionalProtein
     
     optProteins // seq Protein option
-    |> Seq.takeWhile (fun optP ->
-        match optP with
-        | Some p -> p <> STOP
-        | _ -> true)
-    |> Seq.map (fun optP ->
-        match optP with
-        | Some p -> sprintf "%A" p
-        | None -> "")
+    |> Seq.takeWhile isNotStopCodon
+    |> Seq.map optionalProteinToString
     |> Seq.toList
