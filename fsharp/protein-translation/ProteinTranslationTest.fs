@@ -63,7 +63,7 @@ let ``Cysteine RNA sequence 2`` () =
 let ``Tryptophan RNA sequence`` () =
     proteins "UGG" |> should equal ["Tryptophan"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``STOP codon RNA sequence 1`` () =
     proteins "UAA" |> should be Empty
 

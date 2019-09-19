@@ -43,6 +43,7 @@ let mapToProtein rna =
     | "UAU" | "UAC" ->  "Tyrosine"
     | "UGU" | "UGC" ->  "Cysteine"
     | "UGG" ->  "Tryptophan"
+    | "UAA" -> "STOP"
     | _ -> "no protein found for given RNA sequence"
 
 let proteins rna =
@@ -51,5 +52,8 @@ let proteins rna =
         | Ok x -> x |> mapToProtein
         | Error _ -> "ups"
     
-    List.init 1 (fun _ -> result)
+    if result = "STOP" then
+        List.empty
+    else
+        List.init 1 (fun _ -> result)
     
