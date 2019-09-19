@@ -75,13 +75,9 @@ let optionalProteinToString optionalProtein =
     | None -> ""
         
 let proteins rna =
-    
-    let optProteins =
-        split rna
-        |> Seq.map Rna.create
-        |> Seq.map createOptionalProtein
-    
-    optProteins // seq Protein option
+    split rna
+    |> Seq.map Rna.create
+    |> Seq.map createOptionalProtein
     |> Seq.takeWhile isNotStopCodon
     |> Seq.map optionalProteinToString
     |> Seq.toList
