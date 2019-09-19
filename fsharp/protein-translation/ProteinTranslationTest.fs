@@ -11,7 +11,7 @@ open ProteinTranslation
 let ``Methionine RNA sequence`` () =
     proteins "AUG" |> should equal ["Methionine"]
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``Phenylalanine RNA sequence 1`` () =
     proteins "UUU" |> should equal ["Phenylalanine"]
 

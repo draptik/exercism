@@ -37,6 +37,7 @@ let split (s:string) =
 let mapToProtein rna =
     match Rna.value rna with
     | "AUG" ->  "Methionine"
+    | "UUU" ->  "Phenylalanine"
     | _ -> "invalid"
 
 let proteins rna =
