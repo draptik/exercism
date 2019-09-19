@@ -43,7 +43,7 @@ let mapToProtein rna =
     | "UAU" | "UAC" ->  "Tyrosine"
     | "UGU" | "UGC" ->  "Cysteine"
     | "UGG" ->  "Tryptophan"
-    | "UAA" -> "STOP"
+    | "UAA" | "UAG" | "UGA" -> "STOP"
     | _ -> "no protein found for given RNA sequence"
 
 let proteins rna =

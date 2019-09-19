@@ -67,11 +67,11 @@ let ``Tryptophan RNA sequence`` () =
 let ``STOP codon RNA sequence 1`` () =
     proteins "UAA" |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``STOP codon RNA sequence 2`` () =
     proteins "UAG" |> should be Empty
 
-[<Fact(Skip = "Remove to run test")>]
+[<Fact>]
 let ``STOP codon RNA sequence 3`` () =
     proteins "UGA" |> should be Empty
 
