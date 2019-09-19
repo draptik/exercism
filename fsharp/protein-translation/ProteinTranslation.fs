@@ -77,14 +77,3 @@ let proteins rna =
         | Some p -> sprintf "%A" p
         | None -> "")
     |> Seq.toList
-    
-//    let result =
-//        match Rna.create rna with
-//        | Ok x -> x |> mapToProtein
-//        | Error _ -> "ups"
-//    
-//    if result = "STOP" then
-//        List.empty
-//    else
-//        List.init 1 (fun _ -> result)
-//    
