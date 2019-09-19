@@ -68,8 +68,12 @@ let proteins rna =
                     | Error _ -> None)
     
     optProteins // seq Protein option
-    |> Seq.map (fun optProtein ->
-        match optProtein with
+    |> Seq.takeWhile (fun optP ->
+        match optP with
+        | Some p -> p <> STOP
+        | _ -> true)
+    |> Seq.map (fun optP ->
+        match optP with
         | Some p -> sprintf "%A" p
         | None -> "")
     |> Seq.toList
