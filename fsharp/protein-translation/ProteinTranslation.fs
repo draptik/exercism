@@ -28,11 +28,11 @@ module Rna =
         if Set.isSuperset validLetters (set s) then Ok s
         else Error (InvalidRna "invalid letter")
         
-    let create (s:string) : Result<ValidRna, DomainError> =
-        if String.IsNullOrWhiteSpace(s) then
+    let create (unvalidatedInput:string) : Result<ValidRna, DomainError> =
+        if String.IsNullOrWhiteSpace(unvalidatedInput) then
             Error (InvalidRna "empty")
         else
-            s
+            unvalidatedInput
             |> hasExactly3Letters
             |> Result.bind has3ValidLetters
             |> Result.map String.Concat
