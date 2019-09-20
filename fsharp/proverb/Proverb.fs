@@ -19,11 +19,10 @@ let folderFunction state currentItem =
         (lines, currentItem)
     
 let createLines finalItem items =
-    
     let itemsWithPreviousItem =
       List.fold
           folderFunction
-          ([], finalItem)
+          ([], finalItem) // initial state
           items
 
     let (list, _) = itemsWithPreviousItem
@@ -33,6 +32,7 @@ let recite (input: string list): string list =
     match input with
     | [] -> []
     | items ->
-        let lastLine = getProverbFinalItem items |> createLastLine
-        let lines = createLines (getProverbFinalItem items) items
+        let finalItem = getProverbFinalItem items
+        let lastLine = finalItem |> createLastLine
+        let lines = createLines finalItem items
         lastLine :: lines |> List.rev
