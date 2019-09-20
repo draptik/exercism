@@ -9,19 +9,20 @@ let createLastLine s =
 let createLine want loss =
     sprintf "For want of a %s the %s was lost." want loss
 
+let folderFunction state currentItem =
+    let (previousLines, previousItem) = state
+    if currentItem = previousItem then
+        (previousLines, currentItem)
+    else                
+        let line = createLine previousItem currentItem
+        let lines = line :: previousLines
+        (lines, currentItem)
+    
 let createLines finalItem items =
     
     let itemsWithPreviousItem =
       List.fold
-          (fun state currentItem ->
-            let (previousLines, previousItem) = state
-            if currentItem = previousItem then
-                (previousLines, currentItem)
-            else                
-                let line = createLine previousItem currentItem
-                let lines = line :: previousLines
-                (lines, currentItem)
-          )
+          folderFunction
           ([], finalItem)
           items
 
