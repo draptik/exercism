@@ -1,5 +1,4 @@
 module Clock
-open System
 
 type Clock =
     {
@@ -11,9 +10,9 @@ let print clock = sprintf "%02i:%02i" clock.Hour clock.Minute
 
 let convertToTotalMinutes hours minutes = (hours * 60) + minutes
 
-let normalizeHour (minute: int) = Math.Abs(minute) % 1440
+let normalizeHour (minute: int) =  abs minute % 1440
 
-let normalizeMinute (minute: int) = Math.Abs(minute) % 60
+let normalizeMinute (minute: int) = abs minute % 60
 
 let toAnalogHour minute = minute / 60 % 24
 
