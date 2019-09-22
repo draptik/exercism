@@ -46,9 +46,7 @@ let add minutes clock =
     |> convertToAnalogClock 
 
 let subtract minutes clock =
-    let previousTotalMinutes = (clock.Hour * 60) + clock.Minute
-    previousTotalMinutes - minutes
-    |> convertToAnalogClock 
+    add -minutes clock
 
 let display clock =
     print clock
