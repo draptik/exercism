@@ -6,8 +6,6 @@ type Clock =
         Minute: int
     }
 
-let print clock = sprintf "%02i:%02i" clock.Hour clock.Minute
-
 let convertToTotalMinutes hours minutes = (hours * 60) + minutes
 
 let normalizeHour (minute: int) =  abs minute % 1440
@@ -45,4 +43,4 @@ let subtract minutes clock =
     add -minutes clock
 
 let display clock =
-    print clock
+    sprintf "%02i:%02i" clock.Hour clock.Minute
