@@ -2,40 +2,33 @@
 
 open System
 
-let validateSeries data =
-    let (series, _) = data
-    if String.IsNullOrEmpty(series) then None
-    else Some data
-    
-let validateSliceLength data =
-    let (series: string, slice) = data
-    if series.Length < slice then None
-    else Some data
+type Input =
+    {
+        Series: string
+        SliceLength: int
+    }
 
-let validatePositiveSliceLength data =
-    let (_, slice) = data
-    if slice > 0 then Some data
+let validateSeries input =
+    if String.IsNullOrEmpty(input.Series) then None
+    else Some input
+    
+let validateSliceLengthSmallerThanSeriesLength input =
+    if input.Series.Length >= input.SliceLength then Some input
     else None
 
-let createSubSeries data =
-    let (series: string, slice) = data
-    series
-    |> Seq.windowed slice
+let validatePositiveSliceLength input =
+    if input.SliceLength > 0 then Some input
+    else None
+
+let createSubSeries input =
+    input.Series
+    |> Seq.windowed input.SliceLength // <-- "windowed"...
     |> Seq.map (fun chars -> String.Concat(chars))
     |> Seq.toList
     |> Some
 
 let slices str length =
-//    let optionalInputValidation =
-//        validateSeries (str, length)
-//        |> Option.bind validateSliceLength
-//        |> Option.bind validatePositiveSliceLength
-//        
-//    match optionalInputValidation with
-//    | None -> None
-//    | Some data -> createSubSeries data |> Some
-
-    validateSeries (str, length)
-    |> Option.bind validateSliceLength
+    validateSeries ({Series = str; SliceLength = length})
+    |> Option.bind validateSliceLengthSmallerThanSeriesLength
     |> Option.bind validatePositiveSliceLength
     |> Option.bind createSubSeries
