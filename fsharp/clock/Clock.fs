@@ -1,18 +1,19 @@
 module Clock
 open System
 
-type clock = {
-    hour: int
-    minute: int
-}
+type Clock =
+    {
+        Hour: int
+        Minute: int
+    }
 
-let print clock = sprintf "%02i:%02i" clock.hour clock.minute
+let print clock = sprintf "%02i:%02i" clock.Hour clock.Minute
 
 let convertToTotalMinutes hours minutes = (hours * 60) + minutes
 
-let normalizeHour (minute:int) = Math.Abs(minute) % 1440
+let normalizeHour (minute: int) = Math.Abs(minute) % 1440
 
-let normalizeMinute (minute:int) = Math.Abs(minute) % 60
+let normalizeMinute (minute: int) = Math.Abs(minute) % 60
 
 let toAnalogHour minute = minute / 60 % 24
 
@@ -31,8 +32,8 @@ let convertToAnalogClock totalMinutes =
     let analogMinute = prepareNegativeMinutes totalMinutes |> toAnalogMinute
     
     {
-        hour = analogHour  
-        minute = analogMinute
+        Hour = analogHour
+        Minute = analogMinute
     }
 
 let create hours minutes =
@@ -40,12 +41,12 @@ let create hours minutes =
     |> convertToAnalogClock
 
 let add minutes clock =
-    let previousTotalMinutes = (clock.hour * 60) + clock.minute
+    let previousTotalMinutes = (clock.Hour * 60) + clock.Minute
     previousTotalMinutes + minutes
     |> convertToAnalogClock 
 
 let subtract minutes clock =
-    let previousTotalMinutes = (clock.hour * 60) + clock.minute
+    let previousTotalMinutes = (clock.Hour * 60) + clock.Minute
     previousTotalMinutes - minutes
     |> convertToAnalogClock 
 
