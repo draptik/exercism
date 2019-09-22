@@ -16,18 +16,19 @@ let toAnalogHour minute = minute / 60 % 24
 
 let toAnalogMinute minute = minute % 60
 
-let prepareNegativeUnits totalMinutes fullUnitMinutes normalizingFunction =
-    if totalMinutes < 0 then fullUnitMinutes - normalizingFunction totalMinutes
-    else normalizingFunction totalMinutes
-
-let convertToAnalogClock totalMinutes =
-    let prepareNegativeUnitsForTotalMinutes = prepareNegativeUnits totalMinutes // partial application
-    let analogHour = prepareNegativeUnitsForTotalMinutes 1440 normalizeHour |> toAnalogHour
-    let analogMinute = prepareNegativeUnitsForTotalMinutes 60 normalizeMinute |> toAnalogMinute
+let prepareNegativeUnits fullUnitMinutes normalizingFunction toAnalogFunction totalMinutes =
+    let analogMinutes = normalizingFunction totalMinutes
+    if totalMinutes < 0 then
+        fullUnitMinutes - analogMinutes |> toAnalogFunction 
+    else
+        analogMinutes |> toAnalogFunction
     
+let convertToAnalogClock totalMinutes =
     {
-        Hour = analogHour
-        Minute = analogMinute
+        Hour = totalMinutes
+               |> prepareNegativeUnits 1440 normalizeHour toAnalogHour
+        Minute = totalMinutes
+                 |> prepareNegativeUnits 60 normalizeMinute toAnalogMinute
     }
 
 let create hours minutes =
@@ -39,8 +40,6 @@ let add minutes clock =
     previousTotalMinutes + minutes
     |> convertToAnalogClock 
 
-let subtract minutes clock =
-    add -minutes clock
+let subtract minutes clock = add -minutes clock
 
-let display clock =
-    sprintf "%02i:%02i" clock.Hour clock.Minute
+let display clock = sprintf "%02i:%02i" clock.Hour clock.Minute
