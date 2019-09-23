@@ -16,7 +16,7 @@ let toAnalogHour minute = minute / 60 % 24
 
 let toAnalogMinute minute = minute % 60
 
-let prepareNegativeUnits fullUnitMinutes normalizingFunction toAnalogFunction totalMinutes =
+let convertToAnalog fullUnitMinutes normalizingFunction toAnalogFunction totalMinutes =
     let analogMinutes = normalizingFunction totalMinutes
     if totalMinutes < 0 then
         fullUnitMinutes - analogMinutes |> toAnalogFunction 
@@ -25,10 +25,8 @@ let prepareNegativeUnits fullUnitMinutes normalizingFunction toAnalogFunction to
     
 let convertToAnalogClock totalMinutes =
     {
-        Hour = totalMinutes
-               |> prepareNegativeUnits 1440 normalizeHour toAnalogHour
-        Minute = totalMinutes
-                 |> prepareNegativeUnits 60 normalizeMinute toAnalogMinute
+        Hour = totalMinutes |> convertToAnalog 1440 normalizeHour toAnalogHour
+        Minute = totalMinutes |> convertToAnalog 60 normalizeMinute toAnalogMinute
     }
 
 let create hours minutes =
