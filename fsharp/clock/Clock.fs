@@ -8,13 +8,12 @@ type Clock =
 
 let convertToTotalMinutes hours minutes = (hours * 60) + minutes
 
-let normalize timePeriodInMinutes minute = abs minute % timePeriodInMinutes
-
 let toAnalogHour minute = minute / 60 % 24
 
 let toAnalogMinute minute = minute % 60
 
 let convertToAnalog timePeriodInMinutes toAnalogFunction totalMinutes =
+    let normalize timePeriodInMinutes minute = abs minute % timePeriodInMinutes
     let analogMinutes = normalize timePeriodInMinutes totalMinutes 
     if totalMinutes < 0 then
         timePeriodInMinutes - analogMinutes |> toAnalogFunction 
