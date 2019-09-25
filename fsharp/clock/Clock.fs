@@ -12,12 +12,12 @@ let toAnalogHour minute = minute / 60 % 24
 
 let toAnalogMinute minute = minute % 60
 
-let convertToAnalog timePeriodInMinutes toAnalogFunction totalMinutes =
+let convertToAnalog timePeriodInMinutes toAnalogTimePeriod totalMinutes =
     let analogMinutes = abs totalMinutes % timePeriodInMinutes
     if totalMinutes < 0 then
-        timePeriodInMinutes - analogMinutes |> toAnalogFunction 
+        timePeriodInMinutes - analogMinutes |> toAnalogTimePeriod 
     else
-        analogMinutes |> toAnalogFunction
+        analogMinutes |> toAnalogTimePeriod
     
 let convertToAnalogClock totalMinutes =
     {
