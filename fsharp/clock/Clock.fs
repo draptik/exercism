@@ -6,32 +6,32 @@ type Clock =
         Minute: int
     }
 
-let convertToTotalMinutes hours minutes = (hours * 60) + minutes
+let toTotalMinutes hours minutes = (hours * 60) + minutes
 
 let toAnalogHour minute = minute / 60 % 24
 
 let toAnalogMinute minute = minute % 60
 
-let convertToAnalog timePeriodInMinutes toAnalogTimePeriod totalMinutes =
+let toAnalog timePeriodInMinutes toAnalogTimePeriod totalMinutes =
     let analogMinutes = abs totalMinutes % timePeriodInMinutes
     if totalMinutes < 0 then
         timePeriodInMinutes - analogMinutes |> toAnalogTimePeriod 
     else
         analogMinutes |> toAnalogTimePeriod
     
-let convertToAnalogClock totalMinutes =
+let toAnalogClock totalMinutes =
     {
-        Hour = totalMinutes |> convertToAnalog 1440 toAnalogHour
-        Minute = totalMinutes |> convertToAnalog 60 toAnalogMinute
+        Hour = totalMinutes |> toAnalog 1440 toAnalogHour
+        Minute = totalMinutes |> toAnalog 60 toAnalogMinute
     }
 
 let create hours minutes =
-    convertToTotalMinutes hours minutes
-    |> convertToAnalogClock
+    toTotalMinutes hours minutes
+    |> toAnalogClock
 
 let add minutes clock =
-    convertToTotalMinutes clock.Hour clock.Minute + minutes
-    |> convertToAnalogClock 
+    toTotalMinutes clock.Hour clock.Minute + minutes
+    |> toAnalogClock 
 
 let subtract minutes clock = add -minutes clock
 
