@@ -9,9 +9,11 @@ let isIsogram str =
         |> Seq.filter Char.IsLetter
 
     let inputLength = str |> toLetters |> Seq.length 
+
+    let checkedLength =
+        str
+        |> toLetters
+        |> Seq.distinct
+        |> Seq.length
     
-    str
-    |> toLetters
-    |> Seq.sort
-    |> Seq.distinct
-    |> Seq.length = inputLength 
+    checkedLength = inputLength 
