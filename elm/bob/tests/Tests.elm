@@ -91,12 +91,11 @@ tests =
                 Expect.equal
                     "Sure."
                     (Bob.hey "Wait! Hang on. Are you going to be OK?")
-        , skip <|
-            test "silence" <|
-                \() ->
-                    Expect.equal
-                        "Fine. Be that way!"
-                        (Bob.hey "")
+        , test "silence" <|
+            \() ->
+                Expect.equal
+                    "Fine. Be that way!"
+                    (Bob.hey "")
         , skip <|
             test "prolonged silence" <|
                 \() ->

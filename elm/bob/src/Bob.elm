@@ -46,6 +46,10 @@ containsLetters : String -> Bool
 containsLetters input =
     input |> String.toList |> List.any Char.isAlpha
 
+isSilence : String -> Bool
+isSilence input =
+    input |> String.isEmpty
+
 hey : String -> String
 hey remark =
     if containsLetters remark then
@@ -53,6 +57,8 @@ hey remark =
         else if isShouting remark then yellResponse
         else if isQuestion remark then questionResponse
         else fallbackResponse
-     else
+    else if isSilence remark then
+        "Fine. Be that way!"
+    else
         if isQuestion remark then questionResponse
         else fallbackResponse
