@@ -12,6 +12,9 @@ questionResponse = "Sure."
 shoutingQuestionResponse : String
 shoutingQuestionResponse = "Calm down, I know what I'm doing!"
 
+silenceResponse : String
+silenceResponse = "Fine. Be that way!"
+
 areAllLettersUppercase : String -> Bool
 areAllLettersUppercase input =
     -- idea:
@@ -48,17 +51,22 @@ containsLetters input =
 
 isSilence : String -> Bool
 isSilence input =
-    input |> String.isEmpty
+    input 
+    |> String.words 
+    |> String.concat 
+    |> String.isEmpty
 
 hey : String -> String
-hey remark =
+hey rawRemark =
+    let remark = rawRemark |> String.trim
+    in
     if containsLetters remark then
         if isShoutingQuestion remark then shoutingQuestionResponse
         else if isShouting remark then yellResponse
         else if isQuestion remark then questionResponse
         else fallbackResponse
     else if isSilence remark then
-        "Fine. Be that way!"
+        silenceResponse
     else
         if isQuestion remark then questionResponse
         else fallbackResponse
