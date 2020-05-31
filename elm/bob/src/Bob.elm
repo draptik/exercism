@@ -9,6 +9,9 @@ yellResponse = "Whoa, chill out!"
 questionResponse : String
 questionResponse = "Sure."
 
+shoutingQuestionResponse : String
+shoutingQuestionResponse = "Calm down, I know what I'm doing!"
+
 areAllLettersUppercase : String -> Bool
 areAllLettersUppercase input =
     -- idea:
@@ -41,7 +44,7 @@ isShoutingQuestion input =
 
 hey : String -> String
 hey remark =
-    if isShoutingQuestion remark then "Calm down, I know what I'm doing!"
+    if isShoutingQuestion remark then shoutingQuestionResponse
     else if isShouting remark then yellResponse
     else if isQuestion remark then questionResponse
     else fallbackResponse
