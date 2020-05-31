@@ -1,0 +1,18 @@
+{
+  "name": "two-fer",
+  "version": "1.0.0",
+  "description": "`Two-fer` or `2-fer` is short for two for one. One for you and one for me.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elm-format": "^0.8.3",
+    "elm-test": "^0.19.1-revision2"
+  }
+}
