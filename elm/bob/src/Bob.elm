@@ -17,30 +17,22 @@ silenceResponse = "Fine. Be that way!"
 
 areAllLettersUppercase : String -> Bool
 areAllLettersUppercase input =
-    -- idea:
-    -- string -> array of chars
-    -- map over array -> extract all ascii letters (uppercase and lowercase) and create new array; this ensures that all whitespace, non-ascii, and signs are excluded
-    -- are all entries uppercase?
     input
     |> String.toList
     |> List.filter Char.isAlpha
     |> List.all Char.isUpper
 
 isShouting : String -> Bool
-isShouting input =
-    areAllLettersUppercase input
+isShouting input = areAllLettersUppercase input
 
 isQuestion : String -> Bool
-isQuestion input =
-    input |> String.endsWith "?"
+isQuestion input = input |> String.endsWith "?"
 
 isShoutingQuestion : String -> Bool
-isShoutingQuestion input =
-    isShouting input && isQuestion input
+isShoutingQuestion input = isShouting input && isQuestion input
 
 containsLetters : String -> Bool
-containsLetters input =
-    input |> String.toList |> List.any Char.isAlpha
+containsLetters input = input |> String.toList |> List.any Char.isAlpha
 
 isSilence : String -> Bool
 isSilence input =
@@ -53,8 +45,7 @@ hey : String -> String
 hey rawRemark =
     let remark = rawRemark |> String.trim
     in
-    if isSilence remark then
-        silenceResponse
+    if isSilence remark then silenceResponse
     else if containsLetters remark then
         if isShoutingQuestion remark then shoutingQuestionResponse
         else if isShouting remark then yellResponse
