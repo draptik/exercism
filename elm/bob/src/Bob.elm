@@ -35,8 +35,13 @@ isQuestion : String -> Bool
 isQuestion input =
     input |> String.endsWith "?"
 
+isShoutingQuestion : String -> Bool
+isShoutingQuestion input =
+    isShouting input && isQuestion input
+
 hey : String -> String
 hey remark =
-    if isShouting remark then yellResponse
+    if isShoutingQuestion remark then "Calm down, I know what I'm doing!"
+    else if isShouting remark then yellResponse
     else if isQuestion remark then questionResponse
     else fallbackResponse

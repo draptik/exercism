@@ -50,12 +50,11 @@ tests =
                 Expect.equal
                     "Whatever."
                     (Bob.hey "It's OK if you don't want to go to the DMV.")
-        , skip <|
-            test "forceful questions" <|
-                \() ->
-                    Expect.equal
-                        "Calm down, I know what I'm doing!"
-                        (Bob.hey "WHAT THE HELL WERE YOU THINKING?")
+        , test "forceful questions" <|
+            \() ->
+                Expect.equal
+                    "Calm down, I know what I'm doing!"
+                    (Bob.hey "WHAT THE HELL WERE YOU THINKING?")
         , skip <|
             test "shouting numbers" <|
                 \() ->
