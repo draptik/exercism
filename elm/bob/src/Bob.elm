@@ -42,9 +42,16 @@ isShoutingQuestion : String -> Bool
 isShoutingQuestion input =
     isShouting input && isQuestion input
 
+containsLetters : String -> Bool
+containsLetters input =
+    input |> String.toList |> List.any Char.isAlpha
+
 hey : String -> String
 hey remark =
-    if isShoutingQuestion remark then shoutingQuestionResponse
-    else if isShouting remark then yellResponse
-    else if isQuestion remark then questionResponse
-    else fallbackResponse
+    if containsLetters remark then
+        if isShoutingQuestion remark then shoutingQuestionResponse
+        else if isShouting remark then yellResponse
+        else if isQuestion remark then questionResponse
+        else fallbackResponse
+     else
+        fallbackResponse

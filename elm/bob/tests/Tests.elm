@@ -61,12 +61,11 @@ tests =
                     Expect.equal
                         "Whoa, chill out!"
                         (Bob.hey "1, 2, 3 GO!")
-        , skip <|
-            test "only numbers" <|
-                \() ->
-                    Expect.equal
-                        "Whatever."
-                        (Bob.hey "1, 2, 3")
+        , test "only numbers" <|
+            \() ->
+                Expect.equal
+                    "Whatever."
+                    (Bob.hey "1, 2, 3")
         , skip <|
             test "question with only numbers" <|
                 \() ->
