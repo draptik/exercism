@@ -25,12 +25,11 @@ tests =
                 Expect.equal
                     "Whoa, chill out!"
                     (Bob.hey (uppercaseGibberish 10))
-        , skip <|
-            test "asking a question" <|
-                \() ->
-                    Expect.equal
-                        "Sure."
-                        (Bob.hey "Does this cryogenic chamber make me look fat?")
+        , test "asking a question" <|
+            \() ->
+                Expect.equal
+                    "Sure."
+                    (Bob.hey "Does this cryogenic chamber make me look fat?")
         , skip <|
             test "asking a numeric question" <|
                 \() ->

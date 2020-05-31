@@ -6,6 +6,9 @@ fallbackResponse = "Whatever."
 yellResponse : String
 yellResponse = "Whoa, chill out!"
 
+questionResponse : String
+questionResponse = "Sure."
+
 areAllLettersUppercase : String -> Bool
 areAllLettersUppercase input =
     -- idea:
@@ -28,7 +31,12 @@ isShouting input =
      else
         False
 
+isQuestion : String -> Bool
+isQuestion input =
+    input |> String.endsWith "?"
+
 hey : String -> String
 hey remark =
     if isShouting remark then yellResponse
+    else if isQuestion remark then questionResponse
     else fallbackResponse
