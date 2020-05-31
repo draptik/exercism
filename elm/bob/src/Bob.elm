@@ -26,16 +26,9 @@ areAllLettersUppercase input =
     |> List.filter Char.isAlpha
     |> List.all Char.isUpper
 
-areAllWordsAcronyms : String -> Bool
-areAllWordsAcronyms input =
-    False
-
 isShouting : String -> Bool
 isShouting input =
-     if areAllLettersUppercase input then
-        not <| areAllWordsAcronyms input
-     else
-        False
+    areAllLettersUppercase input
 
 isQuestion : String -> Bool
 isQuestion input =
