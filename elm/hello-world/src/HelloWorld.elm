@@ -14,7 +14,7 @@ module HelloWorld exposing (helloWorld)
 
 helloWorld : String
 helloWorld =
-    "Please implement this function"
+    "Hello, World!"
 
 
 

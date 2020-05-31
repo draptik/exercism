@@ -10,5 +10,5 @@ _ReSharper.Caches
 
 # elm
 elm/**/node_modules
-
+elm/**/elm-stuff
 
