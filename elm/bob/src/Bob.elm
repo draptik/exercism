@@ -53,13 +53,13 @@ hey : String -> String
 hey rawRemark =
     let remark = rawRemark |> String.trim
     in
-    if containsLetters remark then
+    if isSilence remark then
+        silenceResponse
+    else if containsLetters remark then
         if isShoutingQuestion remark then shoutingQuestionResponse
         else if isShouting remark then yellResponse
         else if isQuestion remark then questionResponse
         else fallbackResponse
-    else if isSilence remark then
-        silenceResponse
     else
         if isQuestion remark then questionResponse
         else fallbackResponse
