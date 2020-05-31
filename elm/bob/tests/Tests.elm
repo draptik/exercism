@@ -30,30 +30,26 @@ tests =
                 Expect.equal
                     "Sure."
                     (Bob.hey "Does this cryogenic chamber make me look fat?")
-        , skip <|
-            test "asking a numeric question" <|
-                \() ->
-                    Expect.equal
-                        "Sure."
-                        (Bob.hey "You are, what, like 15?")
-        , skip <|
-            test "asking gibberish" <|
-                \() ->
-                    Expect.equal
-                        "Sure."
-                        (Bob.hey (gibberishQuestion 20))
-        , skip <|
-            test "talking forcefully" <|
-                \() ->
-                    Expect.equal
-                        "Whatever."
-                        (Bob.hey "Let's go make out behind the gym!")
-        , skip <|
-            test "using acronyms in regular speech" <|
-                \() ->
-                    Expect.equal
-                        "Whatever."
-                        (Bob.hey "It's OK if you don't want to go to the DMV.")
+        , test "asking a numeric question" <|
+            \() ->
+                Expect.equal
+                    "Sure."
+                    (Bob.hey "You are, what, like 15?")
+        , test "asking gibberish" <|
+            \() ->
+                Expect.equal
+                    "Sure."
+                    (Bob.hey (gibberishQuestion 20))
+        , test "talking forcefully" <|
+            \() ->
+                Expect.equal
+                    "Whatever."
+                    (Bob.hey "Let's go make out behind the gym!")
+        , test "using acronyms in regular speech" <|
+            \() ->
+                Expect.equal
+                    "Whatever."
+                    (Bob.hey "It's OK if you don't want to go to the DMV.")
         , skip <|
             test "forceful questions" <|
                 \() ->
