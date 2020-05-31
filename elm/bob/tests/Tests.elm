@@ -66,36 +66,31 @@ tests =
                 Expect.equal
                     "Whatever."
                     (Bob.hey "1, 2, 3")
-        , skip <|
-            test "question with only numbers" <|
-                \() ->
-                    Expect.equal
-                        "Sure."
-                        (Bob.hey "4?")
-        , skip <|
-            test "shouting with special characters" <|
-                \() ->
-                    Expect.equal
-                        "Whoa, chill out!"
-                        (Bob.hey "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!")
-        , skip <|
-            test "shouting with no exclamation mark" <|
-                \() ->
-                    Expect.equal
-                        "Whoa, chill out!"
-                        (Bob.hey "I HATE YOU")
-        , skip <|
-            test "statement containing a question mark" <|
-                \() ->
-                    Expect.equal
-                        "Whatever."
-                        (Bob.hey "Ending with ? means a question.")
-        , skip <|
-            test "prattling on" <|
-                \() ->
-                    Expect.equal
-                        "Sure."
-                        (Bob.hey "Wait! Hang on. Are you going to be OK?")
+        , test "question with only numbers" <|
+            \() ->
+                Expect.equal
+                    "Sure."
+                    (Bob.hey "4?")
+        , test "shouting with special characters" <|
+            \() ->
+                Expect.equal
+                    "Whoa, chill out!"
+                    (Bob.hey "ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!")
+        , test "shouting with no exclamation mark" <|
+            \() ->
+                Expect.equal
+                    "Whoa, chill out!"
+                    (Bob.hey "I HATE YOU")
+        , test "statement containing a question mark" <|
+            \() ->
+                Expect.equal
+                    "Whatever."
+                    (Bob.hey "Ending with ? means a question.")
+        , test "prattling on" <|
+            \() ->
+                Expect.equal
+                    "Sure."
+                    (Bob.hey "Wait! Hang on. Are you going to be OK?")
         , skip <|
             test "silence" <|
                 \() ->

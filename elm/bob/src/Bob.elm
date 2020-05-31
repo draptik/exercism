@@ -54,4 +54,5 @@ hey remark =
         else if isQuestion remark then questionResponse
         else fallbackResponse
      else
-        fallbackResponse
+        if isQuestion remark then questionResponse
+        else fallbackResponse
