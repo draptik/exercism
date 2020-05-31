@@ -15,12 +15,11 @@ tests =
             \() ->
                 Expect.equal "Whatever."
                     (Bob.hey "Tom-ay-to, tom-aaaah-to.")
-        , skip <|
-            test "shouting" <|
-                \() ->
-                    Expect.equal
-                        "Whoa, chill out!"
-                        (Bob.hey "WATCH OUT!")
+        , test "shouting" <|
+            \() ->
+                Expect.equal
+                    "Whoa, chill out!"
+                    (Bob.hey "WATCH OUT!")
         , skip <|
             test "shouting gibberish" <|
                 \() ->
