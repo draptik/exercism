@@ -78,7 +78,8 @@ Define the `remaining-time` function that takes the actual minutes the lasagna h
 
 ## 3. Calculate the preparation time in minutes
 
-Define the `prep-time` function that takes the number of layers you added to the lasagna as an argument and returns how many minutes you spent preparing the lasagna, assuming each layer takes you 2 minutes to prepare.
+Define the `prep-time` function that takes the number of layers you added to the lasagna as an argument and returns how 
+many minutes you spent preparing the lasagna, assuming each layer takes you 2 minutes to prepare.
 
 ```clojure
 (prep-time 2)
@@ -87,7 +88,12 @@ Define the `prep-time` function that takes the number of layers you added to the
 
 ## 4. Calculate the total working time in minutes
 
-Define the `total-time` function that takes two arguments: the first argument is the number of layers you added to the lasagna, and the second argument is the number of minutes the lasagna has been in the oven. The function should return how many minutes in total you've worked on cooking the lasagna, which is the sum of the preparation time in minutes, and the time in minutes the lasagna has spent in the oven at the moment.
+Define the `total-time` function that takes two arguments: 
+the first argument is the number of layers you added to the lasagna, 
+and the second argument is the number of minutes the lasagna has been in the oven. 
+The function should return how many minutes in total you've worked on cooking the lasagna, 
+which is the sum of the preparation time in minutes, and the time in minutes the 
+lasagna has spent in the oven at the moment.
 
 ```clojure
 (total-time 3 20)
