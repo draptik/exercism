@@ -12,7 +12,7 @@ let ``Change for 1 cent`` () =
     let expected = Some [1]
     findFewestCoins coins target |> should equal expected
 
-[<Fact(Skip = "Remove this Skip property to run this test")>]
+[<Fact>]
 let ``Single coin change`` () =
     let coins = [1; 5; 10; 25; 100]
     let target = 25
