@@ -1,5 +1,10 @@
 # Change
 
+Welcome to Change on Exercism's F# Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
 Correctly determine the fewest number of coins to be given to a customer such
 that the sum of the coins' value would equal the correct amount of change.
 
@@ -16,16 +21,20 @@ that the sum of the coins' value would equal the correct amount of change.
 - Can you ask for negative change?
 - Can you ask for a change value smaller than the smallest coin value?
 
-## Running the tests
-
-To run the tests, run the command `dotnet test` from within the exercise directory.
-
-## Further information
-
-For more detailed information about the F# track, including how to get help if
-you're having trouble, please visit the exercism.io [F# language page](http://exercism.io/languages/fsharp/resources).
-
 ## Source
 
-Software Craftsmanship - Coin Change Kata [https://web.archive.org/web/20130115115225/http://craftsmanship.sv.cmu.edu:80/exercises/coin-change-kata](https://web.archive.org/web/20130115115225/http://craftsmanship.sv.cmu.edu:80/exercises/coin-change-kata)
+### Created by
 
+- @ErikSchierboom
+
+### Contributed to by
+
+- @jrr
+- @lestephane
+- @robkeim
+- @valentin-p
+- @wolf99
+
+### Based on
+
+Software Craftsmanship - Coin Change Kata - https://web.archive.org/web/20130115115225/http://craftsmanship.sv.cmu.edu:80/exercises/coin-change-kata
