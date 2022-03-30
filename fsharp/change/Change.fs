@@ -1,23 +1,5 @@
 ﻿module Change
 
-// https://codereview.stackexchange.com/questions/155967/coin-change-kata-in-immutablejs
-// http://howardism.org/Technical/LP/coin-kata.html
-
-// This will only work if coins are multiples of each other
-let f coins target =
-    let sortedCoins = coins |> List.sortDescending
-    let folder (accAmount, result) coin =
-        let remainAmount = accAmount % coin
-        let coinClones = accAmount / coin |> List.replicate <| coin
-        remainAmount, coinClones @ result
-    let init = target, []
-    let remain, cs = List.fold folder init sortedCoins
-    match remain, cs with
-    | 0, [] -> None
-    | 0, _ -> Some cs
-    | _, _ -> None
-
-// https://exercism.org/tracks/fsharp/exercises/change/solutions/11e5c0c8a72946a0b65b295da5a7cef8
 let change target coins =
     
     let tryAddToPocket pocket coin =
