@@ -1,0 +1,9 @@
+# Build output
+build/
+
+# Gradle cache
+.gradle/
+
+# IntelliJ
+.idea/
+*.iml
