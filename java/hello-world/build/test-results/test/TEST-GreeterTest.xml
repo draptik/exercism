@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GreeterTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-04-16T10:43:03.750Z" hostname="fly" time="0.027">
+  <properties/>
+  <testcase name="Say Hi!" classname="GreeterTest" time="0.021"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
